@@ -13,10 +13,8 @@ window.createProject = createProject;
 window.todoProjects = todoProjects;
 window.createTask = createTask;
 
-console.log(todoProjects[0].id);
-
 createTask(
-  todoProjects[0].id,
+  todoProjects[1].id,
   todoProjects,
   'Crash Bandicoot 1',
   "A game I've been meaning to play",
