@@ -1,4 +1,5 @@
 import { createTodoTask } from './createTodoTask';
+import { findTodoProject } from '../../utils/helpers';
 
 // Add TODO task to Project Task Array
 export function addTodoTaskToArray(
@@ -19,5 +20,7 @@ export function addTodoTaskToArray(
   // For debugging purposes
   console.log(newTask);
 
-  todoProjects.task.push(newTask);
+  const currentProject = findTodoProject(projectID, todoProjects);
+
+  currentProject.task.push(newTask);
 }
