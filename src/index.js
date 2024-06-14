@@ -23,7 +23,7 @@ window.createTask = createTask;
 window.deleteTodoTask = deleteTodoTask;
 
 createTask(
-  getTodoProjects()[1].id,
+  getTodoProjects()[0].id,
   getTodoProjects(),
   'Crash Bandicoot 1',
   "A game I've been meaning to play",
@@ -32,7 +32,7 @@ createTask(
 );
 
 createTask(
-  getTodoProjects()[1].id,
+  getTodoProjects()[0].id,
   getTodoProjects(),
   'Crash Bandicoot 2: Cortex Strikes Back',
   "A sequel to the game I've been meaning to play",
@@ -41,7 +41,7 @@ createTask(
 );
 
 createTask(
-  getTodoProjects()[1].id,
+  getTodoProjects()[0].id,
   getTodoProjects(),
   'Rayman Legends',
   "Another sequel to a game I've been meaning to play",
@@ -50,7 +50,7 @@ createTask(
 );
 
 deleteTodoTask(
-  getTodoProjects()[1].id,
-  getTodoProjects()[1].task[1].id,
+  getTodoProjects()[0].id,
+  getTodoProjects()[0].task[1].id,
   getTodoProjects()
 );
