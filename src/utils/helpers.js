@@ -1,7 +1,7 @@
-export function findArrayElement(personId, arr) {
-    return arr.find((arrayElement) => personId === arrayElement.id);
+export function findArrayElement(arrElement, arr) {
+  return arr.find((arrayElement) => arrElement === arrayElement.id);
 }
-  
-export function findArrayIndex(personId, arr) {
-    return arr.findIndex((arrayElement) => personId === arrayElement.id);
+
+export function findArrayIndex(arrElement, arr) {
+  return arr.findIndex((arrayElement) => arrElement === arrayElement.id);
 }
