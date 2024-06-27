@@ -1,5 +1,6 @@
 // Import CSS styles
 import './style.css';
+import './reset.css';
 
 // Import TODO Project functions
 import {
@@ -14,6 +15,9 @@ import {
   deleteTodoTask,
 } from './modules/todoTaskController.js';
 
+// Import TODO Projects hamburger menu displayer
+import { showTodoProjects } from './modules/todoHamMenuController.js';
+
 // EXAMPLE
 createTodoProject(getTodoProjects(), 'Food to make');
 
@@ -21,9 +25,39 @@ createTodoProject(getTodoProjects(), 'Games to play');
 
 createTodoProject(getTodoProjects(), 'Places to visit');
 
-// deleteTodoProject(getTodoProjects()[0].id, getTodoProjects());
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
+createTodoProject(getTodoProjects(), 'Places to visit');
 
-console.log(getTodoProjects());
+// deleteTodoProject(getTodoProjects()[0].id, getTodoProjects());
 
 window.getTodoProjects = getTodoProjects;
 window.createTodoProject = createTodoProject;
@@ -63,3 +97,12 @@ createTodoTask(
 //   getTodoProjects()[0].task[1].id,
 //   getTodoProjects()
 // );
+
+import { loadSidebar } from './components/TodoProjectSidebar.js';
+import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
+import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
+
+loadSidebar();
+loadNavHamburgerMenu();
+loadTodoTaskDisplay();
+showTodoProjects();
