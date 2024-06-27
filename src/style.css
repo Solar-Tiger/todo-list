@@ -1,3 +1,186 @@
+:root {
+  --project-height: 4rem;
+  --project-header-height: 2.5rem;
+  --todo-project-list-mobile: 100vh;
+
+  --real-todo-project-list-height-mobile: calc(
+    var(--todo-project-list-mobile) - var(--project-header-height)
+  );
+
+  --todo-task-title-height: 2.5rem;
+  --task-container-height: 100vh;
+  --task-height: 100vh;
+
+  --real-task-display-height: calc(
+    var(--task-height) - var(--project-height) - var(--todo-task-title-height)
+  );
+
+  --real-task-container-height-mobile: calc(
+    var(--task-container-height) - var(--project-height)
+  );
+
+  --real-project-height-desktop: calc(
+    var(--task-height) - var(--todo-task-title-height)
+  );
+}
+
 body {
   background-color: #ddd;
+}
+
+.todo-content {
+  display: grid;
+  grid-template-rows: 1fr;
+  min-height: 100vh;
+}
+
+.todo-projects-header {
+  text-align: center;
+  height: var(--project-header-height);
+  border: 2px solid black;
+}
+
+/* .todo-projects-sidebar {
+	max-height: var(--project-height);
+	overflow-y: auto;
+	display: none;
+} */
+
+.todo-projects-list {
+  height: 100%;
+  max-height: var(--real-todo-project-list-height-mobile);
+  overflow-y: auto;
+  border: black solid;
+  border-width: 0 2px 2px 2px;
+}
+
+.todo-projects-list::-webkit-scrollbar,
+.todo-task-display::-webkit-scrollbar {
+  display: none;
+}
+
+.todo-task-container {
+  max-height: var(--real-task-container-height-mobile);
+  border: darkgreen solid;
+  border-width: 0 2px 2px 2px;
+}
+
+.todo-task-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--todo-task-title-height);
+  border: 2px solid darkgreen;
+}
+
+.todo-task-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  justify-items: center;
+  max-height: var(--real-task-display-height);
+  overflow-y: auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.todo-task {
+  border: 2px solid black;
+  width: 275px;
+  height: 275px;
+}
+
+/* Media queries for responsive design */
+@media (min-width: 1024px) {
+  .todo-content {
+    grid-template-columns: 0.25fr 1fr;
+  }
+
+  .todo-projects-sidebar {
+    max-height: 100vh;
+  }
+
+  .todo-task-container {
+    max-height: var(--task-container-height);
+  }
+
+  .todo-task-display {
+    max-height: var(--real-project-height-desktop);
+  }
+
+  .todo-projects-sidebar-two {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .todo-projects-sidebar {
+    background-color: darkblue;
+    max-height: 75vh;
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    right: -450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .todo-projects-sidebar.active {
+    right: 0;
+  }
+
+  .todo-projects-sidebar-two {
+    display: flex;
+    align-items: center;
+    max-height: var(--project-height);
+    background-color: #aaa;
+    padding: 1rem;
+  }
+
+  .ham-menu {
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    position: relative;
+
+    & span {
+      height: 5px;
+      width: 100%;
+      background-color: blue;
+      border-radius: 25px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s ease;
+    }
+
+    & span:nth-child(1) {
+      top: 25%;
+    }
+
+    & span:nth-child(3) {
+      top: 75%;
+    }
+  }
+
+  .ham-menu.active {
+    & span:nth-child(1) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    & span:nth-child(2) {
+      opacity: 0;
+    }
+
+    & span:nth-child(3) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
 }
