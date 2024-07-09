@@ -14,14 +14,14 @@ export function loadTodoTaskDisplay() {
   const h2 = document.createElement('h2');
 
   h2.textContent = 'TODO Tasks';
-  h2.classList.add('todo-task-title');
+  h2.classList.add('todo-task-header');
 
   todoTaskContainer.appendChild(h2);
 
   // Create todo task display and append to todo content container
   const todoTaskDisplay = document.createElement('div');
 
-  todoTaskDisplay.classList.add('todo-task-display');
+  todoTaskDisplay.classList.add('todo-task-list');
 
   todoTaskContainer.appendChild(todoTaskDisplay);
 
