@@ -1,31 +1,39 @@
 :root {
-  --project-height: 4rem;
-  --project-header-height: 2.5rem;
-  --todo-project-list-mobile: 100vh;
+  --todo-project-header-height: 4rem;
+  --todo-project-list-height: 100vh;
 
-  --real-todo-project-list-height-mobile: calc(
-    var(--todo-project-list-mobile) - var(--project-header-height)
+  /* We give the TODO project list all remaining space after subtracting its header height */
+  --todo-project-list-height-desktop: calc(
+    var(--todo-project-list-height) - var(--todo-project-header-height)
   );
 
-  --todo-task-title-height: 2.5rem;
-  --task-container-height: 100vh;
-  --task-height: 100vh;
-
-  --real-task-display-height: calc(
-    var(--task-height) - var(--project-height) - var(--todo-task-title-height)
+  /* We give the TODO task list all remaining space after subtracting its header height */
+  --todo-task-list-height-desktop: calc(
+    var(--todo-task-height) - var(--todo-task-header-height)
   );
 
-  --real-task-container-height-mobile: calc(
-    var(--task-container-height) - var(--project-height)
+  --todo-task-container-height-desktop: 100vh;
+  --todo-task-header-height: 4rem;
+  --todo-task-height: 100vh;
+
+  --todo-task-display-height-mobile: calc(
+    var(--todo-task-height) - var(--todo-project-header-height) -
+      var(--todo-task-header-height)
   );
 
-  --real-project-height-desktop: calc(
-    var(--task-height) - var(--todo-task-title-height)
+  --todo-task-container-height-mobile: calc(
+    var(--todo-task-container-height-desktop) -
+      var(--todo-project-header-height)
   );
 }
 
 body {
   background-color: #ddd;
+}
+
+.todo-projects-list::-webkit-scrollbar,
+.todo-task-list::-webkit-scrollbar {
+  display: none;
 }
 
 .todo-content {
@@ -35,50 +43,42 @@ body {
 }
 
 .todo-projects-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  height: var(--project-header-height);
+  height: var(--todo-project-header-height);
   border: 2px solid black;
 }
 
-/* .todo-projects-sidebar {
-	max-height: var(--project-height);
-	overflow-y: auto;
-	display: none;
-} */
-
-.todo-projects-list {
+.todo-projects-list__desktop {
   height: 100%;
-  max-height: var(--real-todo-project-list-height-mobile);
+  max-height: var(--todo-project-list-height-desktop);
   overflow-y: auto;
   border: black solid;
   border-width: 0 2px 2px 2px;
 }
 
-.todo-projects-list::-webkit-scrollbar,
-.todo-task-display::-webkit-scrollbar {
-  display: none;
-}
-
 .todo-task-container {
-  max-height: var(--real-task-container-height-mobile);
+  max-height: var(--todo-task-container-height-mobile);
   border: darkgreen solid;
   border-width: 0 2px 2px 2px;
 }
 
-.todo-task-title {
+.todo-task-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--todo-task-title-height);
+  height: var(--todo-task-header-height);
   border: 2px solid darkgreen;
 }
 
-.todo-task-display {
+.todo-task-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;
   justify-items: center;
-  max-height: var(--real-task-display-height);
+  max-height: var(--todo-task-display-height-mobile);
   overflow-y: auto;
   gap: 1rem;
   padding: 1rem;
@@ -91,30 +91,10 @@ body {
 }
 
 /* Media queries for responsive design */
-@media (min-width: 1024px) {
-  .todo-content {
-    grid-template-columns: 0.25fr 1fr;
-  }
 
-  .todo-projects-sidebar {
-    max-height: 100vh;
-  }
-
-  .todo-task-container {
-    max-height: var(--task-container-height);
-  }
-
-  .todo-task-display {
-    max-height: var(--real-project-height-desktop);
-  }
-
-  .todo-projects-sidebar-two {
-    display: none;
-  }
-}
-
+/* Responsive design for mobile */
 @media (max-width: 1023px) {
-  .todo-projects-sidebar {
+  .todo-projects-container-sidebar {
     background-color: darkblue;
     max-height: 75vh;
     width: 100%;
@@ -129,14 +109,14 @@ body {
     overflow-y: auto;
   }
 
-  .todo-projects-sidebar.active {
+  .todo-projects-container-sidebar.active {
     right: 0;
   }
 
   .todo-projects-sidebar-two {
     display: flex;
     align-items: center;
-    max-height: var(--project-height);
+    max-height: var(--todo-project-header-height);
     background-color: #aaa;
     padding: 1rem;
   }
@@ -182,5 +162,28 @@ body {
       top: 50%;
       transform: translate(-50%, -50%) rotate(-45deg);
     }
+  }
+}
+
+/* Responsive design for desktop */
+@media (min-width: 1024px) {
+  .todo-content {
+    grid-template-columns: 0.25fr 1fr;
+  }
+
+  .todo-projects-container-sidebar {
+    max-height: 100vh;
+  }
+
+  .todo-task-container {
+    max-height: 100vh;
+  }
+
+  .todo-task-list {
+    max-height: 100vh;
+  }
+
+  .todo-projects-sidebar-two {
+    display: none;
   }
 }
