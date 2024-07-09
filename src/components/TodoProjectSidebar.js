@@ -6,7 +6,7 @@ export function loadSidebar() {
   //  Create and append sidebar to todo content container
   const todoProjectSidebar = document.createElement('div');
 
-  todoProjectSidebar.classList.add('todo-projects-sidebar');
+  todoProjectSidebar.classList.add('todo-projects-container-sidebar');
 
   todoContent.appendChild(todoProjectSidebar);
 
@@ -22,7 +22,7 @@ export function loadSidebar() {
 
   const todoProjectsList = document.createElement('ul');
 
-  todoProjectsList.classList.add('todo-projects-list');
+  todoProjectsList.classList.add('todo-projects-list__desktop');
 
   getTodoProjects().forEach((project) => {
     const li = document.createElement('li');
