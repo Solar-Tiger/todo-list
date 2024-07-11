@@ -31,7 +31,7 @@ body {
   background-color: #ddd;
 }
 
-.todo-projects-list::-webkit-scrollbar,
+.todo-projects-list__desktop::-webkit-scrollbar,
 .todo-task-list::-webkit-scrollbar {
   display: none;
 }
@@ -44,9 +44,9 @@ body {
 
 .todo-projects-header {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  gap: 0.8rem;
   align-items: center;
-  text-align: center;
   height: var(--todo-project-header-height);
   border: 2px solid black;
 }
@@ -57,6 +57,13 @@ body {
   overflow-y: auto;
   border: black solid;
   border-width: 0 2px 2px 2px;
+
+  & p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+  }
 }
 
 .todo-task-container {
@@ -86,8 +93,8 @@ body {
 
 .todo-task {
   border: 2px solid black;
-  width: 275px;
-  height: 275px;
+  width: 250px;
+  height: 250px;
 }
 
 /* Media queries for responsive design */
@@ -95,7 +102,7 @@ body {
 /* Responsive design for mobile */
 @media (max-width: 1023px) {
   .todo-projects-container-sidebar {
-    background-color: darkblue;
+    background-color: skyblue;
     max-height: 75vh;
     width: 100%;
     max-width: 450px;
@@ -107,6 +114,10 @@ body {
     justify-content: center;
     transition: 0.3s ease;
     overflow-y: auto;
+
+    & .todo-projects-header {
+      padding: 1rem;
+    }
   }
 
   .todo-projects-container-sidebar.active {
@@ -122,8 +133,8 @@ body {
   }
 
   .ham-menu {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 30px;
     margin-left: auto;
     position: relative;
 
@@ -168,7 +179,7 @@ body {
 /* Responsive design for desktop */
 @media (min-width: 1024px) {
   .todo-content {
-    grid-template-columns: 0.25fr 1fr;
+    grid-template-columns: 0.4fr 1fr;
   }
 
   .todo-projects-container-sidebar {
@@ -180,10 +191,16 @@ body {
   }
 
   .todo-task-list {
-    max-height: 100vh;
+    max-height: var(--todo-task-list-height-desktop);
   }
 
   .todo-projects-sidebar-two {
     display: none;
+  }
+}
+
+@media (min-width: 1360px) {
+  .todo-content {
+    grid-template-columns: 0.25fr 1fr;
   }
 }
