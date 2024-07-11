@@ -101,8 +101,10 @@ createTodoTask(
 import { loadSidebar } from './components/TodoProjectSidebar.js';
 import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
 import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
+import { addTodoProjectToList } from './components/TodoProjectSidebar.js';
 
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
 showTodoProjects();
+addTodoProjectToList();
