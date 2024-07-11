@@ -1,6 +1,7 @@
 import { getTodoProjects } from '../modules/todoProjectController';
+import projectAdd from '../assets/images/icons/playlist_add.svg';
 
-export function loadSidebar() {
+function loadSidebar() {
   const todoContent = document.querySelector('#todo-content');
 
   //  Create and append sidebar to todo content container
@@ -12,10 +13,17 @@ export function loadSidebar() {
 
   //  Create and append title to sidebar
   const todoProjectHeader = document.createElement('h1');
+  const addTodoProjectButton = document.createElement('img');
+
+  addTodoProjectButton.id = 'add-todo-project';
+  addTodoProjectButton.src = projectAdd;
+  addTodoProjectButton.width = '48';
+
   todoProjectHeader.classList.add('todo-projects-header');
 
-  todoProjectHeader.textContent = 'Todo Projects';
+  todoProjectHeader.textContent = 'TODO Projects';
 
+  todoProjectHeader.appendChild(addTodoProjectButton);
   todoProjectSidebar.appendChild(todoProjectHeader);
 
   // Create and append list of TODO Projects to sidebar
@@ -26,14 +34,26 @@ export function loadSidebar() {
 
   getTodoProjects().forEach((project) => {
     const li = document.createElement('li');
-    const h2 = document.createElement('h2');
+    const p = document.createElement('p');
 
-    h2.textContent = project.projectTitle;
+    p.textContent = project.projectTitle;
 
-    li.appendChild(h2);
+    li.appendChild(p);
 
     todoProjectsList.appendChild(li);
   });
 
   todoProjectSidebar.appendChild(todoProjectsList);
 }
+
+function addTodoProjectToList() {
+  const addTodoProject = document.querySelector('#add-todo-project');
+
+  addTodoProject.addEventListener('click', () => {
+    console.log('Test');
+
+    modal.showModal();
+  });
+}
+
+export { loadSidebar, addTodoProjectToList };
