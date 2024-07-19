@@ -1,5 +1,10 @@
-import { getTodoProjects } from '../modules/todoProjectController';
 import projectAdd from '../assets/images/icons/playlist_add.svg';
+import { showDialogModal } from './TodoProjectModal';
+import { deleteAndUpdateCurrentTodoProjects } from '../modules/todoProjectRemovers.js/todoProjectRemove';
+import {
+  getTodoProjectsDOMList,
+  fetchAndUpdateTodoProjectList,
+} from '../modules/todo_project_controllers/todoProjectController';
 
 function loadSidebar() {
   const todoContent = document.querySelector('#todo-content');
@@ -11,20 +16,23 @@ function loadSidebar() {
 
   todoContent.appendChild(todoProjectSidebar);
 
-  //  Create and append title to sidebar
+  //  Create and append title to sidebar with "add TODO project" button
   const todoProjectHeader = document.createElement('h1');
   const addTodoProjectButton = document.createElement('img');
-
-  addTodoProjectButton.id = 'add-todo-project';
-  addTodoProjectButton.src = projectAdd;
-  addTodoProjectButton.width = '48';
 
   todoProjectHeader.classList.add('todo-projects-header');
 
   todoProjectHeader.textContent = 'TODO Projects';
 
-  todoProjectHeader.appendChild(addTodoProjectButton);
+  addTodoProjectButton.id = 'add-todo-project';
+  addTodoProjectButton.src = projectAdd;
+  addTodoProjectButton.width = '48';
+  addTodoProjectButton.addEventListener('click', () => {
+    showDialogModal();
+  });
+
   todoProjectSidebar.appendChild(todoProjectHeader);
+  todoProjectHeader.appendChild(addTodoProjectButton);
 
   // Create and append list of TODO Projects to sidebar
 
@@ -32,28 +40,10 @@ function loadSidebar() {
 
   todoProjectsList.classList.add('todo-projects-list__desktop');
 
-  getTodoProjects().forEach((project) => {
-    const li = document.createElement('li');
-    const p = document.createElement('p');
-
-    p.textContent = project.projectTitle;
-
-    li.appendChild(p);
-
-    todoProjectsList.appendChild(li);
-  });
-
   todoProjectSidebar.appendChild(todoProjectsList);
+
+  fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
+  deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
 }
 
-function addTodoProjectToList() {
-  const addTodoProject = document.querySelector('#add-todo-project');
-
-  addTodoProject.addEventListener('click', () => {
-    console.log('Test');
-
-    modal.showModal();
-  });
-}
-
-export { loadSidebar, addTodoProjectToList };
+export { loadSidebar };
