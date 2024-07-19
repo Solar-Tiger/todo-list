@@ -61,8 +61,15 @@ body {
   & p {
     font-size: 1.8rem;
     font-weight: bold;
+  }
+
+  & li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
     padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
