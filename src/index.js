@@ -7,16 +7,22 @@ import {
   getTodoProjects,
   addTodoToArray as createTodoProject,
   deleteTodoProject,
-} from './modules/todoProjectController.js';
+} from './modules/todo_project_controllers/todoProjectController.js';
+import { todoProjectModal } from './components/TodoProjectModal.js';
 
 // Import TODO Task functions
 import {
   addTodoTaskToArray as createTodoTask,
   deleteTodoTask,
-} from './modules/todoTaskController.js';
+} from './modules/todo_project_controllers/todoTaskController.js';
 
-// Import TODO Projects hamburger menu displayer
-import { showTodoProjects } from './modules/todoHamMenuController.js';
+// Import TODO Projects displayers
+import { loadSidebar } from './components/TodoProjectSidebar.js';
+import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
+import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
+
+// Add TODO modal in the backgroun to be opened and closed
+todoProjectModal();
 
 // EXAMPLE
 createTodoProject(getTodoProjects(), 'Food to make');
@@ -24,40 +30,6 @@ createTodoProject(getTodoProjects(), 'Food to make');
 createTodoProject(getTodoProjects(), 'Games to play');
 
 createTodoProject(getTodoProjects(), 'Places to visit');
-
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-createTodoProject(getTodoProjects(), 'Places to visit');
-
-// deleteTodoProject(getTodoProjects()[0].id, getTodoProjects());
 
 window.getTodoProjects = getTodoProjects;
 window.createTodoProject = createTodoProject;
@@ -74,37 +46,6 @@ createTodoTask(
   'VERY HIGH'
 );
 
-// createTodoTask(
-//   getTodoProjects()[0].id,
-//   getTodoProjects(),
-//   'Crash Bandicoot 2: Cortex Strikes Back',
-//   "A sequel to the game I've been meaning to play",
-//   new Date().toDateString(),
-//   'VERY HIGH'
-// );
-
-// createTodoTask(
-//   getTodoProjects()[0].id,
-//   getTodoProjects(),
-//   'Rayman Legends',
-//   "Another sequel to a game I've been meaning to play",
-//   new Date().toDateString(),
-//   'VERY HIGH'
-// );
-
-// deleteTodoTask(
-//   getTodoProjects()[0].id,
-//   getTodoProjects()[0].task[1].id,
-//   getTodoProjects()
-// );
-
-import { loadSidebar } from './components/TodoProjectSidebar.js';
-import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
-import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
-import { addTodoProjectToList } from './components/TodoProjectSidebar.js';
-
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
-showTodoProjects();
-addTodoProjectToList();
