@@ -1,4 +1,6 @@
-export function loadNavHamburgerMenu() {
+import { showTodoProjects } from '../modules/todo_project_controllers/todoHamMenuController';
+
+function loadNavHamburgerMenu() {
   const todoContent = document.querySelector('#todo-content');
 
   // Create and append nav bar to todo content container
@@ -21,4 +23,8 @@ export function loadNavHamburgerMenu() {
 
     div.appendChild(span);
   }
+
+  showTodoProjects();
 }
+
+export { loadNavHamburgerMenu };
