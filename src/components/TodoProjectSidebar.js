@@ -1,10 +1,8 @@
 import projectAdd from '../assets/images/icons/playlist_add.svg';
 import { showDialogModal } from './TodoProjectModal';
 import { deleteAndUpdateCurrentTodoProjects } from '../modules/todoProjectRemovers.js/todoProjectRemove';
-import {
-  getTodoProjectsDOMList,
-  fetchAndUpdateTodoProjectList,
-} from '../modules/todo_project_controllers/todoProjectController';
+import { getTodoProjectsDOMList } from '../modules/todo_project_controllers/todoProjectController';
+import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 
 function loadSidebar() {
   const todoContent = document.querySelector('#todo-content');
@@ -41,6 +39,8 @@ function loadSidebar() {
   todoProjectsList.classList.add('todo-projects-list__desktop');
 
   todoProjectSidebar.appendChild(todoProjectsList);
+
+  // Display preloaded TODO projects or ones from Local Storage
 
   fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
