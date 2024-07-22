@@ -2,9 +2,9 @@ import {
   getTodoProjects,
   getTodoProjectsDOMList,
   addTodoToArray,
-  fetchAndUpdateTodoProjectList,
 } from '../todo_project_controllers/todoProjectController';
 import { deleteAndUpdateCurrentTodoProjects } from '../todoProjectRemovers.js/todoProjectRemove';
+import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getTodoProjects();
