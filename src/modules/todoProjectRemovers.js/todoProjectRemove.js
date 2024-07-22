@@ -1,8 +1,8 @@
 import {
   getTodoProjects,
   deleteTodoProject,
-  fetchAndUpdateTodoProjectList,
 } from '../todo_project_controllers/todoProjectController';
+import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
   const currentTodoProjectListDeleteIcon = document.querySelectorAll(
@@ -21,7 +21,7 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
       fetchAndUpdateTodoProjectList(currentTodoProjectList);
 
-      deleteAndUpdateCurrentTodoProjects();
+      deleteAndUpdateCurrentTodoProjects(currentTodoProjectList);
     });
   });
 }
