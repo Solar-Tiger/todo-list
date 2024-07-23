@@ -37,6 +37,7 @@ function loadSidebar() {
   const todoProjectsList = document.createElement('ul');
 
   todoProjectsList.classList.add('todo-projects-list__desktop');
+  todoProjectsList.id = 'todo-projects-list';
 
   todoProjectSidebar.appendChild(todoProjectsList);
 
