@@ -5,13 +5,11 @@ import {
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
-  const currentTodoProjectListDeleteIcon = document.querySelectorAll(
-    '.todo-projects-list__desktop li > img'
-  );
+  const currentTodoProjectListDeleteIcon =
+    currentTodoProjectList.querySelectorAll('li > img');
 
-  const currentTodoProjectListItem = document.querySelectorAll(
-    '.todo-projects-list__desktop li'
-  );
+  const currentTodoProjectListItem =
+    currentTodoProjectList.querySelectorAll('li');
 
   currentTodoProjectListDeleteIcon.forEach((icon, index) => {
     icon.addEventListener('click', () => {
