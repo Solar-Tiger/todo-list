@@ -1,6 +1,6 @@
 import projectAdd from '../assets/images/icons/playlist_add.svg';
 import { showDialogModal } from './TodoProjectModal';
-import { deleteAndUpdateCurrentTodoProjects } from '../modules/todoProjectRemovers.js/todoProjectRemove';
+import { deleteAndUpdateCurrentTodoProjects } from '../modules/todo_project_removers/todoProjectRemove';
 import { getTodoProjectsDOMList } from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 
