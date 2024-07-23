@@ -1,6 +1,15 @@
 import { createId } from '@paralleldrive/cuid2';
 import { findArrayElement, findArrayIndex } from '../../utils/helpers';
 
+// Master Todo Tasks DOM List
+function getTodoTasksDOMList() {
+  const todoTasksDOMList = document.querySelector(
+    '#todo-task-list'
+  );
+
+  return todoTasksDOMList;
+}
+
 // Create TODO task
 function createTodoTask({ title, description, dueDate, priority }) {
   return {
@@ -29,7 +38,7 @@ function addTodoTaskToArray(
   });
 
   // For debugging purposes
-  console.log(newTask);
+  // console.log(newTask);
 
   const currentProject = findArrayElement(projectID, todoProjects);
 
@@ -49,4 +58,4 @@ function deleteTodoTask(projectId, taskId, arr) {
   correctProject.task.splice(correctTaskIndex, 1);
 }
 
-export { addTodoTaskToArray, deleteTodoTask };
+export { addTodoTaskToArray, deleteTodoTask, getTodoTasksDOMList };
