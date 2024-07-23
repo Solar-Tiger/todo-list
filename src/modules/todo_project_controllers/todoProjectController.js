@@ -10,9 +10,7 @@ function getTodoProjects() {
 
 // Master Todo Projects DOM List
 function getTodoProjectsDOMList() {
-  const todoProjectsDOMList = document.querySelector(
-    '.todo-projects-list__desktop'
-  );
+  const todoProjectsDOMList = document.querySelector('#todo-projects-list');
 
   return todoProjectsDOMList;
 }
