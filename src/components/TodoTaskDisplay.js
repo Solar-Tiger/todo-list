@@ -1,8 +1,10 @@
+import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
+import { fetchAndUpdateTodoTaskList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
+
 export function loadTodoTaskDisplay() {
   const todoContent = document.querySelector('#todo-content');
 
   // Create and append containing div for todo task display
-
   const todoTaskContainer = document.createElement('div');
 
   todoTaskContainer.classList.add('todo-task-container');
@@ -10,7 +12,6 @@ export function loadTodoTaskDisplay() {
   todoContent.appendChild(todoTaskContainer);
 
   // Create and append title to todo task display
-
   const h2 = document.createElement('h2');
 
   h2.textContent = 'TODO Tasks';
@@ -19,18 +20,12 @@ export function loadTodoTaskDisplay() {
   todoTaskContainer.appendChild(h2);
 
   // Create todo task display and append to todo content container
-  const todoTaskDisplay = document.createElement('div');
+  const todoTaskDisplay = document.createElement('ul');
 
   todoTaskDisplay.classList.add('todo-task-list');
+  todoTaskDisplay.id = 'todo-task-list';
 
   todoTaskContainer.appendChild(todoTaskDisplay);
 
-  // Create and append n amount of todo task to the todo task display
-  for (let i = 0; i < 11; i++) {
-    const todoTask = document.createElement('div');
-
-    todoTask.classList.add('todo-task');
-
-    todoTaskDisplay.appendChild(todoTask);
-  }
+  fetchAndUpdateTodoTaskList(getTodoTasksDOMList());
 }
