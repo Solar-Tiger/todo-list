@@ -87,6 +87,22 @@ body {
   border: 2px solid darkgreen;
 }
 
+.todo-task-header {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, auto) 1fr;
+  gap: 5px;
+  justify-items: center;
+  height: var(--todo-task-header-height);
+  border: 2px solid darkgreen;
+}
+
+.todo-task-header:nth-child(1) {
+  grid-column-start: 2;
+}
+.todo-task-header:nth-child(2) {
+  margin-left: auto;
+}
+
 .todo-task-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
