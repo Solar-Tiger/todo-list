@@ -3,6 +3,7 @@ import { showDialogModal } from './TodoProjectModal';
 import { deleteAndUpdateCurrentTodoProjects } from '../modules/todo_project_removers/todoProjectRemove';
 import { getTodoProjectsDOMList } from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
+import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
 function loadSidebar() {
   const todoContent = document.querySelector('#todo-content');
@@ -41,10 +42,11 @@ function loadSidebar() {
 
   todoProjectSidebar.appendChild(todoProjectsList);
 
-  // Display preloaded TODO projects or ones from Local Storage
+  // Display preloaded TODO projects or ones from Local Storage and related TODO tasks
 
   fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
+  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList())
 }
 
 export { loadSidebar };
