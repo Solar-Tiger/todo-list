@@ -1,3 +1,4 @@
+import taskAdd from '../assets/images/icons/playlist_add.svg';
 import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTaskList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 
@@ -12,12 +13,23 @@ export function loadTodoTaskDisplay() {
   todoContent.appendChild(todoTaskContainer);
 
   // Create and append title to todo task display
-  const h2 = document.createElement('h2');
+  const todoTaskHeader = document.createElement('h2');
+  const addTodoTaskButton = document.createElement('img');
 
-  h2.textContent = 'TODO Tasks';
-  h2.classList.add('todo-task-header');
+  todoTaskHeader.classList.add('todo-task-header');
 
-  todoTaskContainer.appendChild(h2);
+  todoTaskHeader.textContent = 'TODO Tasks';
+
+  addTodoTaskButton.id = 'add-todo-task';
+  addTodoTaskButton.src = taskAdd;
+  addTodoTaskButton.width = '48';
+  addTodoTaskButton.addEventListener('click', () => {
+    // showDialogModal();
+    console.log('TEST');
+  });
+
+  todoTaskContainer.appendChild(todoTaskHeader);
+  todoTaskHeader.appendChild(addTodoTaskButton);
 
   // Create todo task display and append to todo content container
   const todoTaskDisplay = document.createElement('ul');
