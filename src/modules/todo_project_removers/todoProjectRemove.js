@@ -2,7 +2,10 @@ import {
   getTodoProjects,
   deleteTodoProject,
 } from '../todo_project_controllers/todoProjectController';
+import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
+import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
+import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
   const currentTodoProjectListDeleteIcon =
@@ -20,6 +23,10 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
       fetchAndUpdateTodoProjectList(currentTodoProjectList);
 
       deleteAndUpdateCurrentTodoProjects(currentTodoProjectList);
+
+      displayTodoTasksForCurrentTodoProject(currentTodoProjectList)
+
+      fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), 0)
     });
   });
 }
