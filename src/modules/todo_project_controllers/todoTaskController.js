@@ -3,9 +3,7 @@ import { findArrayElement, findArrayIndex } from '../../utils/helpers';
 
 // Master Todo Tasks DOM List
 function getTodoTasksDOMList() {
-  const todoTasksDOMList = document.querySelector(
-    '#todo-task-list'
-  );
+  const todoTasksDOMList = document.querySelector('#todo-task-list');
 
   return todoTasksDOMList;
 }
