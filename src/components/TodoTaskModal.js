@@ -1,3 +1,5 @@
+import taskComplete from '../assets/images/icons/check_circle.svg';
+import taskRemove from '../assets/images/icons/delete.svg';
 import { addTodoTaskToArray } from '../modules/todo_project_controllers/todoTaskController';
 
 function loadTodoTaskModal() {
@@ -10,6 +12,10 @@ function loadTodoTaskModal() {
 
   todoContent.appendChild(dialog);
 
+  const todoTaskDialog = document.querySelector('#todo-tasks-dialog');
+
+  todoTaskDialog.showModal();
+
   // Create and append TODO tasks form to dialog
   const form = document.createElement('form');
 
@@ -20,21 +26,27 @@ function loadTodoTaskModal() {
   dialog.appendChild(form);
 
   // Create and append form contents to form
-  const projectName = document.createElement('label');
 
-  projectName.for = 'project-name';
-  projectName.textContent = 'Enter Project Name:';
+  //   Create and append task label and task name input to div container
+  const taskNameInputContainer = document.createElement('div');
 
-  const projectNameInput = document.createElement('input');
+  taskNameInputContainer.classList.add('task-name-input-container');
 
-  projectNameInput.type = 'text';
-  projectNameInput.id = 'project-name';
-  projectNameInput.name = 'project-name';
+  const taskName = document.createElement('label');
 
-  form.append(projectName, projectNameInput);
+  taskName.for = 'task-name';
+  taskName.textContent = 'Enter Task Name:';
+
+  const taskNameInput = document.createElement('input');
+
+  taskNameInput.type = 'text';
+  taskNameInput.id = 'task-name';
+  taskNameInput.name = 'task-name';
+
+  form.appendChild(taskNameInputContainer);
+  taskNameInputContainer.append(taskName, taskNameInput);
 
   // Create and append confirm or deny button container to dialog
-
   const btnContainer = document.createElement('div');
 
   const confirmBtn = document.createElement('button');
@@ -44,7 +56,8 @@ function loadTodoTaskModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    addTodoTaskToArray(dialog, projectNameInput);
+    // addTodoTaskToArray(dialog, projectNameInput);
+    console.log('TEST');
   });
 
   cancelBtn.textContent = 'Cancel';
@@ -53,6 +66,31 @@ function loadTodoTaskModal() {
   btnContainer.append(confirmBtn, cancelBtn);
 
   form.appendChild(btnContainer);
+
+  //   Create and append date input to form
+  const dateInput = document.createElement('input');
+
+  dateInput.type = 'date';
+
+  form.appendChild(dateInput);
+
+  //   Create and append complete checkmark and remove task elements to to div container than to the form
+
+  const todoTaskUpdateButtonsContainer = document.createElement('div');
+
+  const taskCompleted = document.createElement('img');
+  const taskRemoved = document.createElement('img');
+
+  taskCompleted.id = 'task-complete';
+  taskCompleted.src = taskComplete;
+  taskCompleted.width = '36';
+
+  taskRemoved.id = 'task-remove';
+  taskRemoved.src = taskRemove;
+  taskRemoved.width = '36';
+
+  todoTaskUpdateButtonsContainer.append(taskCompleted, taskRemoved);
+  form.appendChild(todoTaskUpdateButtonsContainer);
 }
 
 function showTodoTaskDialogModal() {
