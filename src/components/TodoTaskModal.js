@@ -1,6 +1,6 @@
 import { addTodoTaskToArray } from '../modules/todo_project_controllers/todoTaskController';
 
-function todoTaskModal() {
+function loadTodoTaskModal() {
   // Create and append TODO tasks dialog to TODO content
   const todoContent = document.querySelector('#todo-content');
 
@@ -61,4 +61,4 @@ function showTodoTaskDialogModal() {
   todoTaskAddDialog.showModal();
 }
 
-export { todoTaskModal, showTodoTaskDialogModal };
+export { loadTodoTaskModal, showTodoTaskDialogModal };
