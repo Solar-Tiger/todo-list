@@ -16,7 +16,7 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
 
-  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList())
+  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
   todoProjectDialog.close();
 }
