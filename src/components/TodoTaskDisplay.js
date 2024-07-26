@@ -1,4 +1,5 @@
 import taskAdd from '../assets/images/icons/playlist_add.svg';
+import { showTodoTaskDialogModal } from './TodoTaskModal';
 import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTaskList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 
@@ -25,8 +26,7 @@ export function loadTodoTaskDisplay() {
   addTodoTaskButton.src = taskAdd;
   addTodoTaskButton.width = '48';
   addTodoTaskButton.addEventListener('click', () => {
-    // showDialogModal();
-    console.log('TEST');
+    showTodoTaskDialogModal();
   });
 
   todoTaskContainer.appendChild(todoTaskHeader);
