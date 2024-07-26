@@ -9,6 +9,7 @@ import {
   deleteTodoProject,
 } from './modules/todo_project_controllers/todoProjectController.js';
 import { loadTodoProjectModal } from './components/TodoProjectModal.js';
+import { loadTodoTaskModal } from './components/TodoTaskModal.js';
 
 // Import TODO Task functions
 import {
@@ -23,6 +24,7 @@ import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
 
 // Add TODO modal in the backgroun to be opened and closed
 loadTodoProjectModal();
+loadTodoTaskModal();
 
 // EXAMPLE
 createTodoProject(getTodoProjects(), 'Food to make');
