@@ -14,7 +14,7 @@ export function loadTodoTaskDisplay() {
 
   // Create and append title to todo task display
   const todoTaskHeader = document.createElement('header');
-  const todoTaskHeaderName = document.createElement("h2")
+  const todoTaskHeaderName = document.createElement('h2');
   const addTodoTaskButton = document.createElement('img');
 
   todoTaskHeader.classList.add('todo-task-header');
