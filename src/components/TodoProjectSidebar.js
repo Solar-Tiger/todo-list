@@ -1,5 +1,5 @@
 import projectAdd from '../assets/images/icons/playlist_add.svg';
-import { showDialogModal } from './TodoProjectModal';
+import { showTodoProjectDialogModal } from './TodoProjectModal';
 import { deleteAndUpdateCurrentTodoProjects } from '../modules/todo_project_removers/todoProjectRemove';
 import { getTodoProjectsDOMList } from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
@@ -27,7 +27,7 @@ function loadSidebar() {
   addTodoProjectButton.src = projectAdd;
   addTodoProjectButton.width = '48';
   addTodoProjectButton.addEventListener('click', () => {
-    showDialogModal();
+    showTodoProjectDialogModal();
   });
 
   todoProjectSidebar.appendChild(todoProjectHeader);
@@ -46,7 +46,7 @@ function loadSidebar() {
 
   fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
-  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList())
+  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 }
 
 export { loadSidebar };
