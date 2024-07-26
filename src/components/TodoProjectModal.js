@@ -41,7 +41,6 @@ function loadTodoProjectModal() {
   projectNameInputContainer.append(projectName, projectNameInput);
 
   // Create and append confirm or deny button container to dialog
-
   const btnContainer = document.createElement('div');
 
   const confirmBtn = document.createElement('button');
