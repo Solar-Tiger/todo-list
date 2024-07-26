@@ -49,6 +49,10 @@ body {
   align-items: center;
   height: var(--todo-project-header-height);
   border: 2px solid black;
+
+  & img {
+    cursor: pointer;
+  }
 }
 
 .todo-projects-list__desktop {
@@ -58,11 +62,6 @@ body {
   border: black solid;
   border-width: 0 2px 2px 2px;
 
-  & p {
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-
   & li {
     display: flex;
     align-items: center;
@@ -70,6 +69,16 @@ body {
     margin-bottom: 0.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  & p {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  & img,
+  p {
+    cursor: pointer;
   }
 }
 
@@ -80,27 +89,21 @@ body {
 }
 
 .todo-task-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: var(--todo-task-header-height);
-  border: 2px solid darkgreen;
-}
-
-.todo-task-header {
   display: grid;
-  grid-template-columns: 1fr repeat(3, auto) 1fr;
+  align-items: center;
+  grid-template-columns: 1fr repeat(1, auto) 1fr;
   gap: 5px;
   justify-items: center;
   height: var(--todo-task-header-height);
   border: 2px solid darkgreen;
 }
 
-.todo-task-header:nth-child(1) {
+.todo-task-header h2 {
   grid-column-start: 2;
 }
-.todo-task-header:nth-child(2) {
+.todo-task-header img {
   margin-left: auto;
+  margin-right: 5px;
 }
 
 .todo-task-list {
@@ -206,6 +209,15 @@ body {
     grid-template-rows: 1fr;
   }
 
+  .todo-projects-header {
+    padding-left: 1rem;
+
+    & img {
+      margin-left: auto;
+      margin-right: 0.5rem;
+    }
+  }
+
   .todo-projects-container-sidebar {
     max-height: 100vh;
   }
@@ -225,6 +237,6 @@ body {
 
 @media (min-width: 1360px) {
   .todo-content {
-    grid-template-columns: 0.25fr 1fr;
+    grid-template-columns: 0.3fr 1fr;
   }
 }
