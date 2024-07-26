@@ -13,12 +13,13 @@ export function loadTodoTaskDisplay() {
   todoContent.appendChild(todoTaskContainer);
 
   // Create and append title to todo task display
-  const todoTaskHeader = document.createElement('h2');
+  const todoTaskHeader = document.createElement('header');
+  const todoTaskHeaderName = document.createElement("h2")
   const addTodoTaskButton = document.createElement('img');
 
   todoTaskHeader.classList.add('todo-task-header');
 
-  todoTaskHeader.textContent = 'TODO Tasks';
+  todoTaskHeaderName.textContent = 'TODO Tasks';
 
   addTodoTaskButton.id = 'add-todo-task';
   addTodoTaskButton.src = taskAdd;
@@ -29,7 +30,7 @@ export function loadTodoTaskDisplay() {
   });
 
   todoTaskContainer.appendChild(todoTaskHeader);
-  todoTaskHeader.appendChild(addTodoTaskButton);
+  todoTaskHeader.append(todoTaskHeaderName, addTodoTaskButton);
 
   // Create todo task display and append to todo content container
   const todoTaskDisplay = document.createElement('ul');
