@@ -1,7 +1,7 @@
 import { addTodoProjectToSidebar } from '../modules/todo_project_adders/todoProjectAdd';
 
-function todoProjectModal() {
-  // Create and append dialog to TODO content
+function loadTodoProjectModal() {
+  // Create and append TODO project dialog to TODO content
   const todoContent = document.querySelector('#todo-content');
 
   const dialog = document.createElement('dialog');
@@ -10,7 +10,7 @@ function todoProjectModal() {
 
   todoContent.appendChild(dialog);
 
-  // Create and append form to dialog
+  // Create and append TODO project form to dialog
   const form = document.createElement('form');
 
   form.action = '';
@@ -19,7 +19,7 @@ function todoProjectModal() {
 
   dialog.appendChild(form);
 
-  // Create and append form contents to form
+  // Create and append TODO project form contents to form
   const projectName = document.createElement('label');
 
   projectName.for = 'project-name';
@@ -55,10 +55,10 @@ function todoProjectModal() {
   form.appendChild(btnContainer);
 }
 
-function showDialogModal() {
+function showTodoProjectDialogModal() {
   const todoProjectAddDialog = document.querySelector('#todo-project-dialog');
 
   todoProjectAddDialog.showModal();
 }
 
-export { todoProjectModal, showDialogModal };
+export { loadTodoProjectModal, showTodoProjectDialogModal };
