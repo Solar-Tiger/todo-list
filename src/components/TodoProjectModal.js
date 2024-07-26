@@ -20,6 +20,12 @@ function loadTodoProjectModal() {
   dialog.appendChild(form);
 
   // Create and append TODO project form contents to form
+
+  //   Create and append project label and project name input to div container
+  const projectNameInputContainer = document.createElement('div');
+
+  projectNameInputContainer.classList.add('project-name-input-container');
+
   const projectName = document.createElement('label');
 
   projectName.for = 'project-name';
@@ -31,7 +37,8 @@ function loadTodoProjectModal() {
   projectNameInput.id = 'project-name';
   projectNameInput.name = 'project-name';
 
-  form.append(projectName, projectNameInput);
+  form.appendChild(projectNameInputContainer);
+  projectNameInputContainer.append(projectName, projectNameInput);
 
   // Create and append confirm or deny button container to dialog
 
