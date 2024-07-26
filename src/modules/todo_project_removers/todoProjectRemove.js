@@ -24,9 +24,9 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
       deleteAndUpdateCurrentTodoProjects(currentTodoProjectList);
 
-      displayTodoTasksForCurrentTodoProject(currentTodoProjectList)
+      displayTodoTasksForCurrentTodoProject(currentTodoProjectList);
 
-      fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), 0)
+      fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), 0);
     });
   });
 }
