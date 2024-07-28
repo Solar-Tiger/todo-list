@@ -45,7 +45,7 @@ body {
   justify-content: center;
 }
 
-.todo-project-dialog form {
+.todo-project-dialog > form {
   gap: 2.5rem;
   width: 225px;
   height: 250px;
@@ -67,6 +67,64 @@ body {
 }
 
 .todo-project-button-container {
+  gap: 0.5rem;
+
+  & button {
+    padding: var(--todo-project-buttons-size);
+  }
+}
+
+.todo-task-dialog {
+  width: 300px;
+}
+
+.todo-task-dialog > form,
+.todo-task-name-input-container,
+.todo-task-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.todo-task-dialog > form {
+  gap: 1.8rem;
+  width: 225px;
+  height: 350px;
+  margin: auto;
+}
+
+.todo-task-name-input-container {
+  & label {
+    font-size: 1.4rem;
+  }
+
+  & input {
+    padding: 5px;
+  }
+
+  & :not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.todo-task-date-input {
+  padding: 5px;
+}
+
+.todo-task-priority-button-container {
+  display: flex;
+  justify-content: space-evenly;
+
+  div * {
+    margin: 0px 0.1rem;
+  }
+
+  & label {
+    font-size: 1.3rem;
+  }
+}
+
+.todo-task-button-container {
   gap: 0.5rem;
 
   & button {
