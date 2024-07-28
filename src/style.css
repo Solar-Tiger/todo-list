@@ -25,10 +25,53 @@
     var(--todo-task-container-height-desktop) -
       var(--todo-project-header-height)
   );
+
+  --todo-project-buttons-size: 6px;
 }
 
 body {
   background-color: #ddd;
+}
+
+.todo-project-dialog {
+  width: 300px;
+}
+
+.todo-project-dialog > form,
+.todo-project-name-input-container,
+.todo-project-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.todo-project-dialog form {
+  gap: 2.5rem;
+  width: 225px;
+  height: 250px;
+  margin: auto;
+}
+
+.todo-project-name-input-container {
+  & label {
+    font-size: 1.4rem;
+  }
+
+  & input {
+    padding: 5px;
+  }
+
+  & :not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.todo-project-button-container {
+  gap: 0.5rem;
+
+  & button {
+    padding: var(--todo-project-buttons-size);
+  }
 }
 
 .todo-projects-list__desktop::-webkit-scrollbar,
