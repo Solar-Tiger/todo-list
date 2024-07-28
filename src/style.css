@@ -89,7 +89,7 @@ body {
 .todo-task-dialog > form {
   gap: 1.8rem;
   width: 225px;
-  height: 400px;
+  height: 350px;
   margin: auto;
 }
 
