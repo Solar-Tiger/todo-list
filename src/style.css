@@ -209,7 +209,7 @@ body {
 
 .todo-task-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
   justify-items: center;
   max-height: var(--todo-task-display-height-mobile);
@@ -219,9 +219,26 @@ body {
 }
 
 .todo-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.2rem;
   border: 2px solid black;
   width: 250px;
   height: 250px;
+
+  & :nth-child(2) {
+    width: 22ch;
+    text-align: center;
+  }
+
+  & :nth-child(4) {
+    width: 22ch;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 }
 
 /* Media queries for responsive design */
