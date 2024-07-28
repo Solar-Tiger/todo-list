@@ -1,5 +1,3 @@
-import taskComplete from '../assets/images/icons/check_circle.svg';
-import taskRemove from '../assets/images/icons/delete.svg';
 import { addTodoTaskToArray } from '../modules/todo_project_controllers/todoTaskController';
 
 function loadTodoTaskModal() {
@@ -8,6 +6,7 @@ function loadTodoTaskModal() {
 
   const dialog = document.createElement('dialog');
 
+  dialog.classList.add('todo-task-dialog');
   dialog.id = 'todo-tasks-dialog';
 
   todoContent.appendChild(dialog);
@@ -30,7 +29,7 @@ function loadTodoTaskModal() {
   //   Create and append task label and task name input to div container
   const taskNameInputContainer = document.createElement('div');
 
-  taskNameInputContainer.classList.add('task-name-input-container');
+  taskNameInputContainer.classList.add('todo-task-name-input-container');
 
   const taskName = document.createElement('label');
 
@@ -46,8 +45,68 @@ function loadTodoTaskModal() {
   form.appendChild(taskNameInputContainer);
   taskNameInputContainer.append(taskName, taskNameInput);
 
+  //   Create and append date input to form
+  const dateInput = document.createElement('input');
+
+  dateInput.classList.add('todo-task-date-input');
+
+  dateInput.type = 'date';
+
+  form.appendChild(dateInput);
+
+  // Create and append task priority buttons to div container than to form
+  const priorityButtonsContainer = document.createElement('div');
+
+  priorityButtonsContainer.classList.add('todo-task-priority-button-container');
+
+  const todoTaskPriorityButtons = [
+    {
+      type: 'radio',
+      id: 'low-priority',
+      name: 'priority-button',
+      value: 'low-priority',
+      textContet: 'Low',
+    },
+    {
+      type: 'radio',
+      id: 'medium-priority',
+      name: 'priority-button',
+      value: 'medium-priority',
+      textContet: 'Medium',
+    },
+    {
+      type: 'radio',
+      id: 'high-priority',
+      name: 'priority-button',
+      value: 'high-priority',
+      textContet: 'High',
+    },
+  ];
+
+  todoTaskPriorityButtons.forEach((priority) => {
+    const priorityButtonContainer = document.createElement('div');
+
+    const priorityBtn = document.createElement('input');
+    const priorityLabel = document.createElement('label');
+
+    priorityBtn.type = priority.type;
+    priorityBtn.id = priority.id;
+    priorityBtn.name = priority.name;
+    priorityBtn.value = priority.value;
+
+    priorityLabel.setAttribute('for', priority.value);
+    priorityLabel.textContent = priority.textContet;
+
+    priorityButtonContainer.append(priorityBtn, priorityLabel);
+    priorityButtonsContainer.appendChild(priorityButtonContainer);
+  });
+
+  form.appendChild(priorityButtonsContainer);
+
   // Create and append confirm or deny button container to dialog
   const btnContainer = document.createElement('div');
+
+  btnContainer.classList.add('todo-task-button-container');
 
   const confirmBtn = document.createElement('button');
   const cancelBtn = document.createElement('button');
@@ -66,31 +125,6 @@ function loadTodoTaskModal() {
   btnContainer.append(confirmBtn, cancelBtn);
 
   form.appendChild(btnContainer);
-
-  //   Create and append date input to form
-  const dateInput = document.createElement('input');
-
-  dateInput.type = 'date';
-
-  form.appendChild(dateInput);
-
-  //   Create and append complete checkmark and remove task elements to to div container than to the form
-
-  const todoTaskUpdateButtonsContainer = document.createElement('div');
-
-  const taskCompleted = document.createElement('img');
-  const taskRemoved = document.createElement('img');
-
-  taskCompleted.id = 'task-complete';
-  taskCompleted.src = taskComplete;
-  taskCompleted.width = '36';
-
-  taskRemoved.id = 'task-remove';
-  taskRemoved.src = taskRemove;
-  taskRemoved.width = '36';
-
-  todoTaskUpdateButtonsContainer.append(taskCompleted, taskRemoved);
-  form.appendChild(todoTaskUpdateButtonsContainer);
 }
 
 function showTodoTaskDialogModal() {
