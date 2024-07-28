@@ -6,6 +6,7 @@ function loadTodoProjectModal() {
 
   const dialog = document.createElement('dialog');
 
+  dialog.classList.add('todo-project-dialog');
   dialog.id = 'todo-project-dialog';
 
   todoContent.appendChild(dialog);
@@ -24,7 +25,7 @@ function loadTodoProjectModal() {
   //   Create and append project label and project name input to div container
   const projectNameInputContainer = document.createElement('div');
 
-  projectNameInputContainer.classList.add('project-name-input-container');
+  projectNameInputContainer.classList.add('todo-project-name-input-container');
 
   const projectName = document.createElement('label');
 
@@ -43,10 +44,13 @@ function loadTodoProjectModal() {
   // Create and append confirm or deny button container to dialog
   const btnContainer = document.createElement('div');
 
+  btnContainer.classList.add('todo-project-button-container');
+
   const confirmBtn = document.createElement('button');
   const cancelBtn = document.createElement('button');
 
   confirmBtn.textContent = 'Add Project';
+
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
