@@ -1,4 +1,4 @@
-import { addTodoTaskToArray } from '../modules/todo_project_controllers/todoTaskController';
+import { addTodoTaskToDisplay } from '../modules/todo_project_adders/todoTaskAdd';
 
 function loadTodoTaskModal() {
   // Create and append TODO tasks dialog to TODO content
@@ -12,8 +12,6 @@ function loadTodoTaskModal() {
   todoContent.appendChild(dialog);
 
   const todoTaskDialog = document.querySelector('#todo-tasks-dialog');
-
-  todoTaskDialog.showModal();
 
   // Create and append TODO tasks form to dialog
   const form = document.createElement('form');
@@ -137,8 +135,7 @@ function loadTodoTaskModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // addTodoTaskToArray(dialog, projectNameInput);
-    console.log('TEST');
+    addTodoTaskToDisplay(todoTaskDialog, taskNameInput);
   });
 
   cancelBtn.textContent = 'Cancel';
