@@ -30,7 +30,7 @@ function loadTodoProjectModal() {
   const projectName = document.createElement('label');
 
   projectName.for = 'project-name';
-  projectName.textContent = 'Enter Project Name:';
+  projectName.textContent = 'Project name:';
 
   const projectNameInput = document.createElement('input');
 
