@@ -26,15 +26,15 @@ function loadTodoTaskModal() {
 
   // Create and append form contents to form
 
-  //   Create and append task label and task name input to div container
+  // Create and append todo task label and todo task name input to div container
   const taskNameInputContainer = document.createElement('div');
 
   taskNameInputContainer.classList.add('todo-task-name-input-container');
 
-  const taskName = document.createElement('label');
+  const taskNameLabel = document.createElement('label');
 
-  taskName.for = 'task-name';
-  taskName.textContent = 'Enter Task Name:';
+  taskNameLabel.for = 'task-name';
+  taskNameLabel.textContent = 'Task name:';
 
   const taskNameInput = document.createElement('input');
 
@@ -43,9 +43,31 @@ function loadTodoTaskModal() {
   taskNameInput.name = 'task-name';
 
   form.appendChild(taskNameInputContainer);
-  taskNameInputContainer.append(taskName, taskNameInput);
+  taskNameInputContainer.append(taskNameLabel, taskNameInput);
 
-  //   Create and append date input to form
+  // Create and append todo task label and textarea to div container then to form
+  const taskTextareaContainer = document.createElement('div');
+
+  taskTextareaContainer.classList.add('todo-task-description-container');
+
+  const taskTextareaLabel = document.createElement('label');
+
+  taskTextareaLabel.setAttribute('for', 'task-description');
+  taskTextareaLabel.textContent = 'Task description:';
+
+  const taskTextareaInput = document.createElement('textarea');
+
+  taskTextareaInput.id = 'task-description';
+  taskTextareaInput.name = 'task-description';
+  taskTextareaInput.placeholder = 'Task description...';
+  taskTextareaInput.rows = 5;
+  taskTextareaInput.maxLength = 100;
+  taskTextareaInput.style.resize = 'none';
+
+  taskTextareaContainer.append(taskTextareaLabel, taskTextareaInput);
+  form.appendChild(taskTextareaContainer);
+
+  // Create and append todo task date input to form
   const dateInput = document.createElement('input');
 
   dateInput.classList.add('todo-task-date-input');
@@ -111,7 +133,7 @@ function loadTodoTaskModal() {
   const confirmBtn = document.createElement('button');
   const cancelBtn = document.createElement('button');
 
-  confirmBtn.textContent = 'Add Project';
+  confirmBtn.textContent = 'Add Task';
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
