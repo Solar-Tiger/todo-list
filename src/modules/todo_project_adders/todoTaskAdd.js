@@ -7,18 +7,21 @@ import { deleteAndUpdateCurrentTodoProjects } from '../todo_project_removers/tod
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
-function addTodoTaskToDisplay(todoProjectDialog, todoProjectName) {
-  const todoProjects = getTodoProjects();
+import {
+  getTodoTasksDOMList,
+  addTodoTaskToArray,
+} from '../todo_project_controllers/todoTaskController';
+import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 
-  addTodoToArray(todoProjects, todoProjectName.value);
+function addTodoTaskToDisplay(todoTaskDialog, todoTaskName) {
+  console.log(todoTaskDialog, todoTaskName);
 
-  fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
-
-  deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
-
-  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
-
-  todoProjectDialog.close();
+  // const todoProjects = getTodoProjects();
+  // addTodoTaskToArray(todoProjects, todoProjectName.value);
+  // fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
+  // deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
+  // displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
+  // todoTaskDialog.close();
 }
 
 export { addTodoTaskToDisplay };
