@@ -129,3 +129,7 @@ createTodoTask(
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
+
+import { getCurrentDisplayedProject } from './modules/todo_project_controllers/todoProjectController.js';
+
+window.projectUpdater = getCurrentDisplayedProject();
