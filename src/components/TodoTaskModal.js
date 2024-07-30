@@ -53,33 +53,34 @@ function loadTodoTaskModal() {
   taskTextareaLabel.setAttribute('for', 'task-description');
   taskTextareaLabel.textContent = 'Task description:';
 
-  const taskTextareaInput = document.createElement('textarea');
+  const taskDescriptionInput = document.createElement('textarea');
 
-  taskTextareaInput.id = 'task-description';
-  taskTextareaInput.name = 'task-description';
-  taskTextareaInput.placeholder = 'Task description...';
-  taskTextareaInput.rows = 5;
-  taskTextareaInput.maxLength = 100;
-  taskTextareaInput.style.resize = 'none';
+  taskDescriptionInput.id = 'task-description';
+  taskDescriptionInput.name = 'task-description';
+  taskDescriptionInput.placeholder = 'Task description...';
+  taskDescriptionInput.rows = 5;
+  taskDescriptionInput.maxLength = 100;
+  taskDescriptionInput.style.resize = 'none';
 
-  taskTextareaContainer.append(taskTextareaLabel, taskTextareaInput);
+  taskTextareaContainer.append(taskTextareaLabel, taskDescriptionInput);
   form.appendChild(taskTextareaContainer);
 
   // Create and append todo task date input to form
-  const dateInput = document.createElement('input');
+  const taskDateInput = document.createElement('input');
 
-  dateInput.classList.add('todo-task-date-input');
+  taskDateInput.classList.add('todo-task-date-input');
 
-  dateInput.type = 'date';
+  taskDateInput.type = 'date';
 
-  form.appendChild(dateInput);
+  form.appendChild(taskDateInput);
 
   // Create and append task priority buttons to div container than to form
   const priorityButtonsContainer = document.createElement('div');
+  let taskCurrentPriority = 'Low';
 
   priorityButtonsContainer.classList.add('todo-task-priority-button-container');
 
-  const todoTaskPriorityButtons = [
+  const taskPriorityButtons = [
     {
       type: 'radio',
       id: 'low-priority',
@@ -103,7 +104,7 @@ function loadTodoTaskModal() {
     },
   ];
 
-  todoTaskPriorityButtons.forEach((priority) => {
+  taskPriorityButtons.forEach((priority) => {
     const priorityButtonContainer = document.createElement('div');
 
     const priorityBtn = document.createElement('input');
@@ -116,6 +117,10 @@ function loadTodoTaskModal() {
 
     priorityLabel.setAttribute('for', priority.value);
     priorityLabel.textContent = priority.textContet;
+
+    priorityLabel.addEventListener('click', () => {
+      taskCurrentPriority = priorityLabel.textContent;
+    });
 
     priorityButtonContainer.append(priorityBtn, priorityLabel);
     priorityButtonsContainer.appendChild(priorityButtonContainer);
@@ -135,7 +140,13 @@ function loadTodoTaskModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    addTodoTaskToDisplay(todoTaskDialog, taskNameInput);
+    addTodoTaskToDisplay(
+      todoTaskDialog,
+      taskNameInput,
+      taskDescriptionInput,
+      taskDateInput,
+      taskCurrentPriority
+    );
   });
 
   cancelBtn.textContent = 'Cancel';
