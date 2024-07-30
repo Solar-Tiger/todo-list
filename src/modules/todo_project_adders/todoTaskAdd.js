@@ -1,7 +1,6 @@
 import {
   getTodoProjects,
-  getTodoProjectsDOMList,
-  addTodoToArray,
+  projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
 import { deleteAndUpdateCurrentTodoProjects } from '../todo_project_removers/todoProjectRemove';
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
@@ -13,15 +12,30 @@ import {
 } from '../todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 
-function addTodoTaskToDisplay(todoTaskDialog, todoTaskName) {
-  console.log(todoTaskDialog, todoTaskName);
+function addTodoTaskToDisplay(
+  todoTaskDialog,
+  taskName,
+  taskDescription,
+  taskDueDate,
+  taskPriority
+) {
+  const todoProjects = getTodoProjects();
 
-  // const todoProjects = getTodoProjects();
-  // addTodoTaskToArray(todoProjects, todoProjectName.value);
+  console.log(projectUpdater.getDisplayedProject());
+
+  // addTodoTaskToArray(
+  //   projectUpdater.getDisplayedProject().id,
+  //   todoProjects,
+  //   taskName.value,
+  //   taskDescription.value,
+  //   taskDueDate.value,
+  //   taskPriority.toUpperCase()
+  // );
+
   // fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   // deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
   // displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
-  // todoTaskDialog.close();
+  todoTaskDialog.close();
 }
 
 export { addTodoTaskToDisplay };
