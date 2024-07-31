@@ -8,22 +8,6 @@ function getTodoProjects() {
   return todoProjects;
 }
 
-// Get current project to use to add new task to
-function getCurrentDisplayedProject() {
-  let currentDisplayedProject = getTodoProjects()[0];
-
-  return {
-    updateCurrentDisplayedProject: (updatedDisplayedProject) => {
-      currentDisplayedProject = getTodoProjects()[updatedDisplayedProject];
-    },
-    getDisplayedProject: () => {
-      return currentDisplayedProject;
-    },
-  };
-}
-
-const projectUpdater = getCurrentDisplayedProject();
-
 // Master Todo Projects DOM List
 function getTodoProjectsDOMList() {
   const todoProjectsDOMList = document.querySelector('#todo-projects-list');
@@ -56,6 +40,22 @@ function deleteTodoProject(personId, arr) {
 
   arr.splice(correctProjectIndex, 1);
 }
+
+// Get current project to use to add new task to
+function getCurrentDisplayedProject() {
+  let currentDisplayedProject;
+
+  return {
+    updateCurrentDisplayedProject: (updatedDisplayedProjectIndex) => {
+      currentDisplayedProject = getTodoProjects()[updatedDisplayedProjectIndex];
+    },
+    getDisplayedProject: () => {
+      return currentDisplayedProject;
+    },
+  };
+}
+
+const projectUpdater = getCurrentDisplayedProject();
 
 export {
   getTodoProjects,
