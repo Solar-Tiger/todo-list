@@ -7,6 +7,7 @@ import {
   getTodoProjects,
   addTodoToArray as createTodoProject,
   deleteTodoProject,
+  projectUpdater,
 } from './modules/todo_project_controllers/todoProjectController.js';
 import { loadTodoProjectModal } from './components/TodoProjectModal.js';
 import { loadTodoTaskModal } from './components/TodoTaskModal.js';
@@ -33,11 +34,15 @@ createTodoProject(getTodoProjects(), 'Games to play');
 
 createTodoProject(getTodoProjects(), 'Places to visit');
 
+// Make sure by default the first project selected is loaded
+projectUpdater.updateCurrentDisplayedProject(0);
+
 window.getTodoProjects = getTodoProjects;
 window.createTodoProject = createTodoProject;
 window.deleteTodoProject = deleteTodoProject;
 window.createTodoTask = createTodoTask;
 window.deleteTodoTask = deleteTodoTask;
+window.projectUpdater = projectUpdater;
 
 // Food added to the "Food to make" TODO Project
 
@@ -129,7 +134,3 @@ createTodoTask(
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
-
-import { projectUpdater } from './modules/todo_project_controllers/todoProjectController.js';
-
-window.projectUpdater = projectUpdater;
