@@ -2,7 +2,7 @@ import todoTaskComplete from '../../assets/images/icons/check_circle.svg';
 import todoTaskDelete from '../../assets/images/icons/delete.svg';
 import { getTodoProjects } from '../todo_project_controllers/todoProjectController';
 
-// Add and update TODO project list via DOM
+// Add and update TODO tasks list via DOM
 function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
   currentTodoTasks.textContent = '';
 
