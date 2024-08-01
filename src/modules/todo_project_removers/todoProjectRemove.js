@@ -6,6 +6,7 @@ import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskControl
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
+import { deleteAndUpdateCurrentTodoTasks } from './todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
@@ -28,6 +29,8 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
       displayTodoTasksForCurrentTodoProject(currentTodoProjectList);
 
       fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), 0);
+
+      deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
       projectUpdater.updateCurrentDisplayedProject(0);
     });
