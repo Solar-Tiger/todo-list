@@ -200,6 +200,10 @@ body {
   justify-items: center;
   height: var(--todo-task-header-height);
   border: 2px solid darkgreen;
+
+  & img {
+    cursor: pointer;
+  }
 }
 
 .todo-task-header h2 {
@@ -253,6 +257,10 @@ body {
   & .todo-task-icons-container {
     display: flex;
     gap: 24px;
+
+    & img {
+      cursor: pointer;
+    }
   }
 }
 
@@ -296,6 +304,7 @@ body {
     width: 30px;
     margin-left: auto;
     position: relative;
+    cursor: pointer;
 
     & span {
       height: 5px;
