@@ -4,8 +4,15 @@ import { findArrayIndex } from '../../utils/helpers';
 // Array to store TODO projects
 const todoProjects = [];
 
-function getTodoProjects() {
-  return todoProjects;
+function getOrSetTodoProjects() {
+  return {
+    getCurrentTodoProjects: () => {
+      return todoProjects;
+    },
+    setNewTodoProjects: (newTodoProjects) => {
+      todoProjects = newTodoProjects;
+    },
+  };
 }
 
 // Master Todo Projects DOM List
@@ -47,7 +54,10 @@ function getCurrentDisplayedProject() {
 
   return {
     updateCurrentDisplayedProject: (updatedDisplayedProjectIndex) => {
-      currentDisplayedProject = getTodoProjects()[updatedDisplayedProjectIndex];
+      currentDisplayedProject =
+        getOrSetTodoProjects().getCurrentTodoProjects()[
+          updatedDisplayedProjectIndex
+        ];
     },
     getDisplayedProject: () => {
       return currentDisplayedProject;
@@ -58,7 +68,7 @@ function getCurrentDisplayedProject() {
 const projectUpdater = getCurrentDisplayedProject();
 
 export {
-  getTodoProjects,
+  getOrSetTodoProjects,
   projectUpdater,
   getTodoProjectsDOMList,
   addTodoToArray,

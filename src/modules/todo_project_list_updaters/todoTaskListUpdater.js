@@ -1,6 +1,6 @@
 import todoTaskComplete from '../../assets/images/icons/check_circle.svg';
 import todoTaskDelete from '../../assets/images/icons/delete.svg';
-import { getTodoProjects } from '../todo_project_controllers/todoProjectController';
+import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
 
 // Add and update TODO tasks list via DOM
 function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
@@ -9,12 +9,14 @@ function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
   let clickedProjectTasks;
 
   if (clickedProjectIndex === undefined) {
-    clickedProjectTasks = getTodoProjects()[0].task;
+    clickedProjectTasks =
+      getOrSetTodoProjects().getCurrentTodoProjects()[0].task;
   } else {
-    if (getTodoProjects().length === 0) {
+    if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
       return;
     }
-    clickedProjectTasks = getTodoProjects()[clickedProjectIndex].task;
+    clickedProjectTasks =
+      getOrSetTodoProjects().getCurrentTodoProjects()[clickedProjectIndex].task;
   }
 
   clickedProjectTasks.forEach((task) => {

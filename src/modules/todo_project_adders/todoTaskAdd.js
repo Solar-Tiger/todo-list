@@ -1,5 +1,5 @@
 import {
-  getTodoProjects,
+  getOrSetTodoProjects,
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
 
@@ -20,9 +20,9 @@ function addTodoTaskToDisplay(
   taskDueDate,
   taskPriority
 ) {
-  const todoProjects = getTodoProjects();
+  const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
 
-  if (getTodoProjects().length === 0) {
+  if (todoProjects.length === 0) {
     todoTaskDialog.close();
 
     return;
@@ -39,7 +39,7 @@ function addTodoTaskToDisplay(
 
   const currentProjectIndex = findArrayIndex(
     projectUpdater.getDisplayedProject().id,
-    getTodoProjects()
+    todoProjects
   );
 
   fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), currentProjectIndex);

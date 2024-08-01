@@ -1,5 +1,5 @@
 import {
-  getTodoProjects,
+  getOrSetTodoProjects,
   deleteTodoProject,
 } from '../todo_project_controllers/todoProjectController';
 import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskController';
@@ -18,7 +18,10 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
   currentTodoProjectListDeleteIcon.forEach((icon, index) => {
     icon.addEventListener('click', () => {
-      deleteTodoProject(getTodoProjects()[index].id, getTodoProjects());
+      deleteTodoProject(
+        getOrSetTodoProjects().getCurrentTodoProjects()[index].id,
+        getOrSetTodoProjects()
+      );
 
       currentTodoProjectList.removeChild(currentTodoProjectListItem[index]);
 

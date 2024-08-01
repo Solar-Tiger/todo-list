@@ -1,5 +1,5 @@
 import {
-  getTodoProjects,
+  getOrSetTodoProjects,
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
 import { deleteTodoTask } from '../todo_project_controllers/todoTaskController';
@@ -18,14 +18,14 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
       deleteTodoTask(
         projectUpdater.getDisplayedProject().id,
         projectUpdater.getDisplayedProject().task[index].id,
-        getTodoProjects()
+        getOrSetTodoProjects().getCurrentTodoProjects()
       );
 
       currentTodoTasksList.removeChild(currentTodoTaskListItem[index]);
 
       const currentProjectIndex = findArrayIndex(
         projectUpdater.getDisplayedProject().id,
-        getTodoProjects()
+        getOrSetTodoProjects().getCurrentTodoProjects()
       );
 
       fetchAndUpdateTodoTaskList(currentTodoTasksList, currentProjectIndex);

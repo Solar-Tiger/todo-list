@@ -1,5 +1,5 @@
 import {
-  getTodoProjects,
+  getOrSetTodoProjects,
   getTodoProjectsDOMList,
   addTodoToArray,
   projectUpdater,
@@ -9,7 +9,7 @@ import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/tod
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
-  const todoProjects = getTodoProjects();
+  const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
 
   addTodoToArray(todoProjects, todoProjectName.value);
 
@@ -19,7 +19,7 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
-  if (getTodoProjects().length === 1) {
+  if (todoProjects.length === 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
   }
 
