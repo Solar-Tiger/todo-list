@@ -6,26 +6,24 @@ import './reset.css';
 import {
   getTodoProjects,
   addTodoToArray as createTodoProject,
-  deleteTodoProject,
   projectUpdater,
 } from './modules/todo_project_controllers/todoProjectController.js';
+
+// Import TODO Task functions
+import { addTodoTaskToArray as createTodoTask } from './modules/todo_project_controllers/todoTaskController.js';
+
+// Import TODO Project modals for adding new projects or tasks
 import { loadTodoProjectModal } from './components/TodoProjectModal.js';
 import { loadTodoTaskModal } from './components/TodoTaskModal.js';
 
-// Import TODO Task functions
-import {
-  addTodoTaskToArray as createTodoTask,
-  deleteTodoTask,
-} from './modules/todo_project_controllers/todoTaskController.js';
+// Add TODO modal in the backgroun to be opened and closed
+loadTodoProjectModal();
+loadTodoTaskModal();
 
 // Import TODO Projects displayers
 import { loadSidebar } from './components/TodoProjectSidebar.js';
 import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
 import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
-
-// Add TODO modal in the backgroun to be opened and closed
-loadTodoProjectModal();
-loadTodoTaskModal();
 
 // EXAMPLE
 createTodoProject(getTodoProjects(), 'Food to make');
@@ -37,15 +35,7 @@ createTodoProject(getTodoProjects(), 'Places to visit');
 // Make sure by default the first project selected is loaded
 projectUpdater.updateCurrentDisplayedProject(0);
 
-window.getTodoProjects = getTodoProjects;
-window.createTodoProject = createTodoProject;
-window.deleteTodoProject = deleteTodoProject;
-window.createTodoTask = createTodoTask;
-window.deleteTodoTask = deleteTodoTask;
-window.projectUpdater = projectUpdater;
-
 // Food added to the "Food to make" TODO Project
-
 createTodoTask(
   getTodoProjects()[0].id,
   getTodoProjects(),
@@ -65,7 +55,6 @@ createTodoTask(
 );
 
 // Games added to the "Games to play" TODO Project
-
 createTodoTask(
   getTodoProjects()[1].id,
   getTodoProjects(),
@@ -94,7 +83,6 @@ createTodoTask(
 );
 
 // Places to visit add to the "Places to visit" TODO Project
-
 createTodoTask(
   getTodoProjects()[2].id,
   getTodoProjects(),
