@@ -7,6 +7,7 @@ import {
 import { deleteAndUpdateCurrentTodoProjects } from '../todo_project_removers/todoProjectRemove';
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
+import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
@@ -19,9 +20,21 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
-  if (todoProjects.length === 1) {
+  if (getOrSetTodoProjects().getCurrentTodoProjects().length === 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
+  } else if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 2) {
+    const currentProjectIndex = findArrayIndex(
+      projectUpdater.getDisplayedProject().id,
+      getOrSetTodoProjects().getCurrentTodoProjects()
+    );
+
+    projectUpdater.updateCurrentDisplayedProject(currentProjectIndex);
   }
+
+  saveArrayToLocalStorage(
+    'todoProjects',
+    getOrSetTodoProjects().getCurrentTodoProjects()
+  );
 
   todoProjectDialog.close();
 }
