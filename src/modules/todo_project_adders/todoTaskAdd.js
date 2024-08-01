@@ -2,13 +2,12 @@ import {
   getTodoProjects,
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
-import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
-
 import {
   getTodoTasksDOMList,
   addTodoTaskToArray,
 } from '../todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
+import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
 import { findArrayIndex } from '../../utils/helpers';
 
@@ -42,6 +41,7 @@ function addTodoTaskToDisplay(
   );
 
   fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), currentProjectIndex);
+  deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
   todoTaskDialog.close();
 }
