@@ -11,7 +11,7 @@ import {
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
-import { findArrayIndex } from '../../utils/helpers';
+import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
 
 function addTodoTaskToDisplay(
   todoTaskDialog,
@@ -44,6 +44,11 @@ function addTodoTaskToDisplay(
 
   fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), currentProjectIndex);
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
+
+  saveArrayToLocalStorage(
+    'todoProjects',
+    getOrSetTodoProjects().getCurrentTodoProjects()
+  );
 
   todoTaskDialog.close();
 }
