@@ -1,7 +1,11 @@
 import projectAdd from '../assets/images/icons/playlist_add.svg';
 import { showTodoProjectDialogModal } from './TodoProjectModal';
 import { deleteAndUpdateCurrentTodoProjects } from '../modules/todo_project_removers/todoProjectRemove';
-import { getTodoProjectsDOMList } from '../modules/todo_project_controllers/todoProjectController';
+import {
+  projectUpdater,
+  getOrSetTodoProjects,
+  getTodoProjectsDOMList,
+} from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
@@ -47,6 +51,12 @@ function loadSidebar() {
   fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
+
+  // Load proper displayed project when page is refreshed if projects are available
+
+  if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
+    projectUpdater.updateCurrentDisplayedProject(0);
+  }
 }
 
 export { loadSidebar };
