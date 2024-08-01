@@ -134,8 +134,3 @@ createTodoTask(
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
-
-import { deleteAndUpdateCurrentTodoTasks } from './modules/todo_project_removers/todoTaskRemove.js';
-import { getTodoTasksDOMList } from './modules/todo_project_controllers/todoTaskController.js';
-
-deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
