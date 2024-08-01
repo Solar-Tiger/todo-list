@@ -2,10 +2,12 @@ import {
   getTodoProjects,
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
+
 import {
   getTodoTasksDOMList,
   addTodoTaskToArray,
 } from '../todo_project_controllers/todoTaskController';
+
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
