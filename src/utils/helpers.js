@@ -6,4 +6,8 @@ function findArrayIndex(arrElement, arr) {
   return arr.findIndex((arrayElement) => arrElement === arrayElement.id);
 }
 
-export { findArrayElement, findArrayIndex };
+function saveArrayToLocalStorage(arrName, arr) {
+  localStorage.setItem(arrName, JSON.stringify(arr));
+}
+
+export { findArrayElement, findArrayIndex, saveArrayToLocalStorage };
