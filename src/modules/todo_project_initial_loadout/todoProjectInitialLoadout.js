@@ -11,7 +11,7 @@ import { saveArrayToLocalStorage } from '../../utils/helpers.js';
 import { addTodoTaskToArray as createTodoTask } from '../todo_project_controllers/todoTaskController.js';
 
 function loadInitialTodoProjects() {
-  if (localStorage.getItem('todoProjects') !== null) {
+  if (localStorage.getItem('todoProjects') === null) {
     // Initial TODO Projects
     createTodoProject(
       getOrSetTodoProjects().getCurrentTodoProjects(),
@@ -78,11 +78,11 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects()
     );
   } else {
-    // let changedArr = getOrSetTodoProjects();
-    // console.log(changedArr);
-    // changedArr = JSON.parse(localStorage.getItem('todoProjects'));
-    // getOrSetTodoProjects() = changedArr
-    // console.log(changedArr);
+    console.log(localStorage.getItem('todoProjects') === null);
+
+    getOrSetTodoProjects().setNewTodoProjects(
+      JSON.parse(localStorage.getItem('todoProjects'))
+    );
   }
 }
 
