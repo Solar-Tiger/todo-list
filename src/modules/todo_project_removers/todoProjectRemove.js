@@ -9,6 +9,7 @@ import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTa
 import { deleteAndUpdateCurrentTodoTasks } from './todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { saveArrayToLocalStorage } from '../../utils/helpers';
+import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
   const currentTodoProjectListDeleteIcon =
@@ -37,6 +38,8 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
       projectUpdater.updateCurrentDisplayedProject(0);
+
+      updateCurrentProjectTitle();
 
       saveArrayToLocalStorage(
         'todoProjects',

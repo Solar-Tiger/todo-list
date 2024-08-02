@@ -2,6 +2,7 @@ import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskControl
 import { fetchAndUpdateTodoTaskList } from './todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
+import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 
 function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
   const clickedTodoProject = currentTodoProjectList.querySelectorAll('li > p');
@@ -13,6 +14,8 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
       projectUpdater.updateCurrentDisplayedProject(index);
+
+      updateCurrentProjectTitle();
     });
   });
 }
