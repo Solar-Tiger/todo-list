@@ -10,6 +10,9 @@ import { saveArrayToLocalStorage } from '../../utils/helpers.js';
 // Import TODO Task functions
 import { addTodoTaskToArray as createTodoTask } from '../todo_project_controllers/todoTaskController.js';
 
+// Import date formatter to display dues dates more clearly
+import { format } from 'date-fns';
+
 function loadInitialTodoProjects() {
   if (localStorage.getItem('todoProjects') === null) {
     // Initial TODO Projects
@@ -32,7 +35,7 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects(),
       'Chicken pot pie',
       'A southern favorite dinner-like pie',
-      new Date().toDateString(),
+      format(new Date(), 'LLL do, y'),
       'LOW'
     );
 
@@ -41,7 +44,7 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects(),
       'Stromboli',
       'A burrito like folded pizza',
-      new Date().toDateString(),
+      format(new Date(), 'LLL do, y'),
       'MEDIUM'
     );
 
@@ -51,7 +54,7 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects(),
       'Crash Bandicoot 1',
       'The first game in the Crash Bandicoot series for the PS1',
-      new Date().toDateString(),
+      format(new Date(), 'LLL do, y'),
       'MEDIUM'
     );
 
@@ -60,7 +63,7 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects(),
       'Ratchet & Clank: Rift Apart',
       'The most recent installment in the Ratcht & Clank series for PS5 and recently released on Steam!',
-      new Date().toDateString(),
+      format(new Date(), 'LLL do, y'),
       'VERY HIGH'
     );
 
@@ -69,7 +72,7 @@ function loadInitialTodoProjects() {
       getOrSetTodoProjects().getCurrentTodoProjects(),
       'Darksiders',
       'The first game in a series of games featuring the 4 horsemen of the apocalypse',
-      new Date().toDateString(),
+      format(new Date(), 'LLL do, y'),
       'HIGH'
     );
 
