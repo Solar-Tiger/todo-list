@@ -18,8 +18,10 @@ import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
 loadTodoProjectModal();
 loadTodoTaskModal();
 
+// Load initital TODO projects as placeholders
 loadInitialTodoProjects();
 
+// Load TODO project menus
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
