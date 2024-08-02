@@ -4,7 +4,7 @@ import {
 } from '../todo_project_controllers/todoProjectController';
 import { deleteTodoTask } from '../todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
-import { findArrayIndex } from '../../utils/helpers';
+import { findArrayIndex, saveArrayToLocalStorage } from '../../utils/helpers';
 
 function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
   const currentTodoTaskListDeleteIcon = currentTodoTasksList.querySelectorAll(
@@ -31,6 +31,11 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
       fetchAndUpdateTodoTaskList(currentTodoTasksList, currentProjectIndex);
 
       deleteAndUpdateCurrentTodoTasks(currentTodoTasksList);
+
+      saveArrayToLocalStorage(
+        'todoProjects',
+        getOrSetTodoProjects().getCurrentTodoProjects()
+      );
     });
   });
 }
