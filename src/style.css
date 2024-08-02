@@ -292,11 +292,18 @@ body {
   }
 
   .todo-projects-sidebar-two {
-    display: flex;
+    display: grid;
     align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr repeat(1, auto) 1fr;
     max-height: var(--todo-project-header-height);
     background-color: #aaa;
     padding: 1rem;
+
+    & h2 {
+      font-size: 32px;
+      grid-column-start: 2;
+    }
   }
 
   .ham-menu {
