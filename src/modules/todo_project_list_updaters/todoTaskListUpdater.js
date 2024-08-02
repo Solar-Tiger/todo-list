@@ -9,8 +9,12 @@ function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
   let clickedProjectTasks;
 
   if (clickedProjectIndex === undefined) {
-    clickedProjectTasks =
-      getOrSetTodoProjects().getCurrentTodoProjects()[0].task;
+    if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
+      return;
+    } else {
+      clickedProjectTasks =
+        getOrSetTodoProjects().getCurrentTodoProjects()[0].task;
+    }
   } else {
     if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
       return;
