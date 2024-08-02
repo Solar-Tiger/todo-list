@@ -2,7 +2,7 @@ import { createId } from '@paralleldrive/cuid2';
 import { findArrayIndex } from '../../utils/helpers';
 
 // Array to store TODO projects
-const todoProjects = [];
+let todoProjects = [];
 
 function getOrSetTodoProjects() {
   return {
