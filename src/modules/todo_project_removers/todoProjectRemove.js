@@ -8,6 +8,7 @@ import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_upda
 import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from './todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
+import { saveArrayToLocalStorage } from '../../utils/helpers';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
   const currentTodoProjectListDeleteIcon =
@@ -20,7 +21,7 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
     icon.addEventListener('click', () => {
       deleteTodoProject(
         getOrSetTodoProjects().getCurrentTodoProjects()[index].id,
-        getOrSetTodoProjects()
+        getOrSetTodoProjects().getCurrentTodoProjects()
       );
 
       currentTodoProjectList.removeChild(currentTodoProjectListItem[index]);
@@ -36,6 +37,11 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
       projectUpdater.updateCurrentDisplayedProject(0);
+
+      saveArrayToLocalStorage(
+        'todoProjects',
+        getOrSetTodoProjects().getCurrentTodoProjects()
+      );
     });
   });
 }
