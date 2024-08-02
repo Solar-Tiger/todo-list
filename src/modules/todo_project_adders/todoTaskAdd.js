@@ -47,10 +47,7 @@ function addTodoTaskToDisplay(
   fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), currentProjectIndex);
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
-  saveArrayToLocalStorage(
-    'todoProjects',
-    getOrSetTodoProjects().getCurrentTodoProjects()
-  );
+  saveArrayToLocalStorage('todoProjects', todoProjects);
 
   todoTaskDialog.close();
 }
