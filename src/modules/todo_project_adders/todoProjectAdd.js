@@ -20,21 +20,18 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
-  if (getOrSetTodoProjects().getCurrentTodoProjects().length === 1) {
+  if (todoProjects.length === 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
-  } else if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 2) {
+  } else if (todoProjects.length >= 2) {
     const currentProjectIndex = findArrayIndex(
       projectUpdater.getDisplayedProject().id,
-      getOrSetTodoProjects().getCurrentTodoProjects()
+      todoProjects
     );
 
     projectUpdater.updateCurrentDisplayedProject(currentProjectIndex);
   }
 
-  saveArrayToLocalStorage(
-    'todoProjects',
-    getOrSetTodoProjects().getCurrentTodoProjects()
-  );
+  saveArrayToLocalStorage('todoProjects', todoProjects);
 
   todoProjectDialog.close();
 }
