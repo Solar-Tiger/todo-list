@@ -13,6 +13,8 @@ import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTa
 
 import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
 
+import { format } from 'date-fns';
+
 function addTodoTaskToDisplay(
   todoTaskDialog,
   taskName,
@@ -33,7 +35,7 @@ function addTodoTaskToDisplay(
     todoProjects,
     taskName.value,
     taskDescription.value,
-    taskDueDate.value,
+    format(taskDueDate.value, 'LLL do, y'),
     taskPriority.toUpperCase()
   );
 
