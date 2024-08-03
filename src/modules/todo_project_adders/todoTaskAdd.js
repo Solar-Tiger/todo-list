@@ -13,7 +13,7 @@ import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTa
 
 import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
 
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 function addTodoTaskToDisplay(
   todoTaskDialog,
@@ -23,6 +23,7 @@ function addTodoTaskToDisplay(
   taskPriority
 ) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
+  let validTaskDueDate;
 
   if (todoProjects.length === 0) {
     todoTaskDialog.close();
@@ -30,12 +31,18 @@ function addTodoTaskToDisplay(
     return;
   }
 
+  if (taskDueDate.value === '') {
+    validTaskDueDate = format(new Date(), 'LLL do, y');
+  } else {
+    validTaskDueDate = format(parseISO(taskDueDate.value), 'LLL do, y');
+  }
+
   addTodoTaskToArray(
     projectUpdater.getDisplayedProject().id,
     todoProjects,
     taskName.value,
     taskDescription.value,
-    format(taskDueDate.value, 'LLL do, y'),
+    validTaskDueDate,
     taskPriority.toUpperCase()
   );
 
