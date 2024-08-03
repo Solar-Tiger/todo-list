@@ -1,5 +1,6 @@
 import { showTodoProjects } from '../modules/todo_project_controllers/todoHamMenuController';
 import { projectUpdater } from '../modules/todo_project_controllers/todoProjectController';
+import { updateCurrentProjectTitle } from '../modules/todo_project_title_updater/todoProjectTitleUpdater';
 
 function loadNavHamburgerMenu() {
   const todoContent = document.querySelector('#todo-content');
@@ -15,10 +16,9 @@ function loadNavHamburgerMenu() {
 
   const currentTodoProjectTitle = document.createElement('h2');
 
-  currentTodoProjectTitle.textContent =
-    projectUpdater.getDisplayedProject().projectTitle;
-
   nav.appendChild(currentTodoProjectTitle);
+
+  updateCurrentProjectTitle();
 
   // Create and append ham menu container to nav bar
   const div = document.createElement('div');
