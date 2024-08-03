@@ -39,7 +39,7 @@ function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
     todoTask.classList.add('todo-task');
     todoTaskName.textContent = task.taskTitle;
     todoTaskDescription.textContent = task.taskDescription;
-    todoTaskDueDate.textContent = task.taskDueDate;
+    todoTaskDueDate.textContent = `Due Date: ${task.taskDueDate}`;
     todoTaskPriority.textContent = task.taskPriority;
 
     todoTaskCompleteIcon.id = 'todo-task-complete-icon';
