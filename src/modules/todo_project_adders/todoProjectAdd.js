@@ -8,6 +8,7 @@ import { deleteAndUpdateCurrentTodoProjects } from '../todo_project_removers/tod
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
+import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
@@ -32,6 +33,8 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   }
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
+
+  updateCurrentProjectTitle();
 
   todoProjectDialog.close();
 }
