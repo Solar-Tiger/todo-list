@@ -7,13 +7,6 @@ import { deleteAndUpdateCurrentTodoTasks } from '../modules/todo_project_remover
 export function loadTodoTaskDisplay() {
   const todoContent = document.querySelector('#todo-content');
 
-  // Create and append containing div for todo task display
-  const todoTaskContainer = document.createElement('div');
-
-  todoTaskContainer.classList.add('todo-task-container');
-
-  todoContent.appendChild(todoTaskContainer);
-
   // Create and append title to todo task display
   const todoTaskHeader = document.createElement('header');
   const todoTaskHeaderName = document.createElement('h2');
@@ -30,7 +23,7 @@ export function loadTodoTaskDisplay() {
     showTodoTaskDialogModal();
   });
 
-  todoTaskContainer.appendChild(todoTaskHeader);
+  todoContent.appendChild(todoTaskHeader);
   todoTaskHeader.append(todoTaskHeaderName, addTodoTaskButton);
 
   // Create todo task display and append to todo content container
@@ -39,7 +32,7 @@ export function loadTodoTaskDisplay() {
   todoTaskDisplay.classList.add('todo-task-list');
   todoTaskDisplay.id = 'todo-task-list';
 
-  todoTaskContainer.appendChild(todoTaskDisplay);
+  todoContent.appendChild(todoTaskDisplay);
 
   fetchAndUpdateTodoTaskList(getTodoTasksDOMList());
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
