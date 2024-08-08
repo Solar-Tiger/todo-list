@@ -19,6 +19,25 @@ function loadSidebar() {
 
   todoContent.appendChild(todoProjectSidebar);
 
+  // Create and append options to display various task from all projects
+  const taskDisplayerOptions = document.createElement('ul');
+
+  taskDisplayerOptions.classList.add('todo-task-displayer-options');
+
+  const taskDisplayerChoices = ['All tasks', "Today's tasks", 'Weekly tasks'];
+
+  for (let i = 0; i < taskDisplayerChoices.length; i++) {
+    const taskOptionLi = document.createElement('li');
+    const taskOptionH2 = document.createElement('p');
+
+    taskOptionH2.textContent = taskDisplayerChoices[i];
+
+    taskOptionLi.appendChild(taskOptionH2);
+    taskDisplayerOptions.appendChild(taskOptionLi);
+  }
+
+  todoProjectSidebar.appendChild(taskDisplayerOptions);
+
   //  Create and append title to sidebar with "add TODO project" button
   const todoProjectHeader = document.createElement('h1');
   const addTodoProjectButton = document.createElement('img');
@@ -38,7 +57,6 @@ function loadSidebar() {
   todoProjectHeader.appendChild(addTodoProjectButton);
 
   // Create and append list of TODO Projects to sidebar
-
   const todoProjectsList = document.createElement('ul');
 
   todoProjectsList.classList.add('todo-projects-list__desktop');
