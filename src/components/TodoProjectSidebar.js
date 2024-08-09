@@ -9,6 +9,10 @@ import {
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
+// TODO Tasks displayer options
+import { fetchAndUpdateAllTodoTaskInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
+import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
+
 function loadSidebar() {
   const todoContent = document.querySelector('#todo-content');
 
@@ -26,15 +30,19 @@ function loadSidebar() {
 
   const taskDisplayerChoices = ['All tasks', "Today's tasks", 'Weekly tasks'];
 
-  for (let i = 0; i < taskDisplayerChoices.length; i++) {
+  taskDisplayerChoices.forEach((taskChoice) => {
     const taskOptionLi = document.createElement('li');
-    const taskOptionH2 = document.createElement('p');
+    const taskDisplayOption = document.createElement('p');
 
-    taskOptionH2.textContent = taskDisplayerChoices[i];
+    taskDisplayOption.textContent = taskChoice;
 
-    taskOptionLi.appendChild(taskOptionH2);
+    taskDisplayOption.addEventListener('click', () => {
+      fetchAndUpdateAllTodoTaskInList(getTodoTasksDOMList(), taskChoice);
+    });
+
+    taskOptionLi.appendChild(taskDisplayOption);
     taskDisplayerOptions.appendChild(taskOptionLi);
-  }
+  });
 
   todoProjectSidebar.appendChild(taskDisplayerOptions);
 
