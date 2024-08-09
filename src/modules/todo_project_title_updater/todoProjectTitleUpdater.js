@@ -13,4 +13,16 @@ function updateCurrentProjectTitle() {
   }
 }
 
-export { updateCurrentProjectTitle };
+function updateCurrentProjectTitleTwo(currenctDisplayedTitle) {
+  const currentTodoProjectTitle = document.querySelector(
+    '.todo-projects-sidebar-two h2'
+  );
+
+  if (currenctDisplayedTitle === undefined) {
+    currentTodoProjectTitle.textContent = 'No projects!';
+  } else {
+    currentTodoProjectTitle.textContent = currenctDisplayedTitle;
+  }
+}
+
+export { updateCurrentProjectTitle, updateCurrentProjectTitleTwo };
