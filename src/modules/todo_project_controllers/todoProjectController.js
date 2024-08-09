@@ -27,7 +27,7 @@ function createTodoProject(title) {
   return {
     id: createId(), // Generate unique ID
     projectTitle: title,
-    task: [],
+    tasks: [],
   };
 }
 
