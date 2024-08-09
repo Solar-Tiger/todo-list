@@ -1,5 +1,5 @@
 :root {
-  --todo-project-buttons-size: 6px;
+  --todo-project-buttons-padding: 6px;
   --todo-project-input-padding: 6px;
 }
 
@@ -42,7 +42,7 @@ body {
   gap: 0.8rem;
 
   & button {
-    padding: var(--todo-project-buttons-size);
+    padding: var(--todo-project-buttons-padding);
   }
 }
 
@@ -96,7 +96,7 @@ body {
   gap: 0.5rem;
 
   & button {
-    padding: var(--todo-project-buttons-size);
+    padding: var(--todo-project-buttons-padding);
   }
 }
 
