@@ -1,9 +1,36 @@
 import todoTaskComplete from '../../assets/images/icons/check_circle.svg';
 import todoTaskDelete from '../../assets/images/icons/delete.svg';
 import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
+import { getOrSetAllTodoTask } from '../todo_project_controllers/todoTaskController';
+import { updateCurrentProjectTitleTwo } from '../todo_project_title_updater/todoProjectTitleUpdater';
+
+// Add and update TODO tasks list via DOM of ALL TODO tasks
+function fetchAndUpdateAllTodoTaskInList(
+  currentTodoTasks,
+  currentTodoTaskOptionName
+) {
+  currentTodoTasks.textContent = '';
+
+  const updatedTodoTaskList = getOrSetTodoProjects()
+    .getCurrentTodoProjects()
+    .flatMap((allTodoProjects) =>
+      allTodoProjects.tasks.map((eashTask) => eashTask)
+    );
+
+  getOrSetAllTodoTask().setNewTodoTask(updatedTodoTaskList);
+
+  console.log(getOrSetAllTodoTask().getAllTodoTask());
+
+  updateCurrentProjectTitleTwo(currentTodoTaskOptionName);
+
+  createAndAppendTodoTaskToDOM(
+    currentTodoTasks,
+    getOrSetAllTodoTask().getAllTodoTask()
+  );
+}
 
 // Add and update TODO tasks list via DOM
-function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
+function fetchAndUpdateTodoTasksInList(currentTodoTasks, clickedProjectIndex) {
   currentTodoTasks.textContent = '';
 
   let clickedProjectTasks;
@@ -13,17 +40,22 @@ function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
       return;
     } else {
       clickedProjectTasks =
-        getOrSetTodoProjects().getCurrentTodoProjects()[0].task;
+        getOrSetTodoProjects().getCurrentTodoProjects()[0].tasks;
     }
   } else {
     if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
       return;
     }
     clickedProjectTasks =
-      getOrSetTodoProjects().getCurrentTodoProjects()[clickedProjectIndex].task;
+      getOrSetTodoProjects().getCurrentTodoProjects()[clickedProjectIndex]
+        .tasks;
   }
 
-  clickedProjectTasks.forEach((task) => {
+  createAndAppendTodoTaskToDOM(currentTodoTasks, clickedProjectTasks);
+}
+
+function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
+  projectTasks.forEach((task) => {
     const todoTask = document.createElement('li');
     const todoTaskName = document.createElement('h2');
     const todoTaskDescription = document.createElement('p');
@@ -60,8 +92,12 @@ function fetchAndUpdateTodoTaskList(currentTodoTasks, clickedProjectIndex) {
       todoTaskIconsContainer
     );
 
-    currentTodoTasks.appendChild(todoTask);
+    displayedTodoTask.appendChild(todoTask);
   });
 }
 
-export { fetchAndUpdateTodoTaskList };
+export {
+  fetchAndUpdateTodoTasksInList,
+  fetchAndUpdateAllTodoTaskInList,
+  createAndAppendTodoTaskToDOM,
+};
