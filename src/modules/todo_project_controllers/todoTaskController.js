@@ -1,6 +1,20 @@
 import { createId } from '@paralleldrive/cuid2';
 import { findArrayElement, findArrayIndex } from '../../utils/helpers';
 
+let allTodoTask = [];
+
+// Create function to get all TODO tasks and store them in allTodoTask array
+function getOrSetAllTodoTask() {
+  return {
+    getAllTodoTask: () => {
+      return allTodoTask;
+    },
+    setNewTodoTask: (updatedAllTodoTask) => {
+      allTodoTask = updatedAllTodoTask;
+    },
+  };
+}
+
 // Master Todo Tasks DOM List
 function getTodoTasksDOMList() {
   const todoTasksDOMList = document.querySelector('#todo-task-list');
@@ -40,20 +54,25 @@ function addTodoTaskToArray(
 
   const currentProject = findArrayElement(projectID, todoProjects);
 
-  currentProject.task.push(newTask);
+  currentProject.tasks.push(newTask);
 }
 
 // Delete TODO task from Project Task Array
 function deleteTodoTask(projectId, taskId, arr) {
   const correctProject = findArrayElement(projectId, arr);
 
-  console.log(correctProject.task);
+  console.log(correctProject.tasks);
 
-  const correctTaskIndex = findArrayIndex(taskId, correctProject.task);
+  const correctTaskIndex = findArrayIndex(taskId, correctProject.tasks);
 
   console.log(correctTaskIndex);
 
-  correctProject.task.splice(correctTaskIndex, 1);
+  correctProject.tasks.splice(correctTaskIndex, 1);
 }
 
-export { addTodoTaskToArray, deleteTodoTask, getTodoTasksDOMList };
+export {
+  getOrSetAllTodoTask,
+  addTodoTaskToArray,
+  deleteTodoTask,
+  getTodoTasksDOMList,
+};
