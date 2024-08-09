@@ -1,7 +1,7 @@
 import taskAdd from '../assets/images/icons/playlist_add.svg';
 import { showTodoTaskDialogModal } from './TodoTaskModal';
 import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
-import { fetchAndUpdateTodoTaskList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
+import { fetchAndUpdateTodoTasksInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../modules/todo_project_removers/todoTaskRemove';
 
 export function loadTodoTaskDisplay() {
@@ -42,6 +42,6 @@ export function loadTodoTaskDisplay() {
 
   todoTaskContainer.appendChild(todoTaskDisplay);
 
-  fetchAndUpdateTodoTaskList(getTodoTasksDOMList());
+  fetchAndUpdateTodoTasksInList(getTodoTasksDOMList());
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 }
