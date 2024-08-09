@@ -3,7 +3,7 @@ import {
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
 import { deleteTodoTask } from '../todo_project_controllers/todoTaskController';
-import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
+import { fetchAndUpdateTodoTasksInList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { findArrayIndex, saveArrayToLocalStorage } from '../../utils/helpers';
 
 function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
@@ -17,7 +17,7 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
     icon.addEventListener('click', () => {
       deleteTodoTask(
         projectUpdater.getDisplayedProject().id,
-        projectUpdater.getDisplayedProject().task[index].id,
+        projectUpdater.getDisplayedProject().tasks[index].id,
         getOrSetTodoProjects().getCurrentTodoProjects()
       );
 
@@ -28,7 +28,7 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
         getOrSetTodoProjects().getCurrentTodoProjects()
       );
 
-      fetchAndUpdateTodoTaskList(currentTodoTasksList, currentProjectIndex);
+      fetchAndUpdateTodoTasksInList(currentTodoTasksList, currentProjectIndex);
 
       deleteAndUpdateCurrentTodoTasks(currentTodoTasksList);
 
