@@ -8,7 +8,7 @@ import {
   addTodoTaskToArray,
 } from '../todo_project_controllers/todoTaskController';
 
-import { fetchAndUpdateTodoTaskList } from '../todo_project_list_updaters/todoTaskListUpdater';
+import { fetchAndUpdateTodoTasksInList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
 import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
@@ -51,7 +51,7 @@ function addTodoTaskToDisplay(
     todoProjects
   );
 
-  fetchAndUpdateTodoTaskList(getTodoTasksDOMList(), currentProjectIndex);
+  fetchAndUpdateTodoTasksInList(getTodoTasksDOMList(), currentProjectIndex);
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
