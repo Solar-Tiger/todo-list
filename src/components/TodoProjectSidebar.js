@@ -73,13 +73,11 @@ function loadSidebar() {
   todoProjectSidebar.appendChild(todoProjectsList);
 
   // Display preloaded TODO projects or ones from Local Storage and related TODO tasks
-
   fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
   deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
   // Load proper displayed project when page is refreshed if projects are available
-
   if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
   }
