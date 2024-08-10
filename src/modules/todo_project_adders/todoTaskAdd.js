@@ -32,9 +32,9 @@ function addTodoTaskToDisplay(
   }
 
   if (taskDueDate.value === '') {
-    validTaskDueDate = format(new Date(), 'LLL do, y');
+    validTaskDueDate = format(new Date(), 'MMM do, yyyy');
   } else {
-    validTaskDueDate = format(parseISO(taskDueDate.value), 'LLL do, y');
+    validTaskDueDate = format(parseISO(taskDueDate.value), 'MMM do, yyyy');
   }
 
   addTodoTaskToArray(
