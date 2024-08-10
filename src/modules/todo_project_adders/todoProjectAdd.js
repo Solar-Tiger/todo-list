@@ -34,7 +34,7 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
-  updateCurrentProjectTitle();
+  updateCurrentProjectTitle(projectUpdater.getDisplayedProject().projectTitle);
 
   todoProjectDialog.close();
 }
