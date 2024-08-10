@@ -15,7 +15,9 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
 
       projectUpdater.updateCurrentDisplayedProject(index);
 
-      updateCurrentProjectTitle();
+      updateCurrentProjectTitle(
+        projectUpdater.getDisplayedProject().projectTitle
+      );
     });
   });
 }

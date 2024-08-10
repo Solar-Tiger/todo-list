@@ -39,7 +39,9 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
       projectUpdater.updateCurrentDisplayedProject(0);
 
-      updateCurrentProjectTitle();
+      updateCurrentProjectTitle(
+        projectUpdater.getDisplayedProject().projectTitle
+      );
 
       saveArrayToLocalStorage(
         'todoProjects',
