@@ -18,7 +18,7 @@ function loadNavHamburgerMenu() {
 
   nav.appendChild(currentTodoProjectTitle);
 
-  updateCurrentProjectTitle();
+  updateCurrentProjectTitle(projectUpdater.getDisplayedProject().projectTitle);
 
   // Create and append ham menu container to nav bar
   const div = document.createElement('div');
