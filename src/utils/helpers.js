@@ -10,4 +10,13 @@ function saveArrayToLocalStorage(arrName, arr) {
   localStorage.setItem(arrName, JSON.stringify(arr));
 }
 
-export { findArrayElement, findArrayIndex, saveArrayToLocalStorage };
+function getArrayOfArrayValues(arr, arrKey) {
+  return arr.flatMap((arrValue) => arrValue[arrKey]);
+}
+
+export {
+  findArrayElement,
+  findArrayIndex,
+  saveArrayToLocalStorage,
+  getArrayOfArrayValues,
+};
