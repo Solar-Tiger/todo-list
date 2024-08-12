@@ -2,7 +2,7 @@ import todoTaskComplete from '../../assets/images/icons/check_circle.svg';
 import todoTaskDelete from '../../assets/images/icons/delete.svg';
 import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
 import { getOrSetAllTodoTask } from '../todo_project_controllers/todoTaskController';
-import { updateCurrentProjectTitleTwo } from '../todo_project_title_updater/todoProjectTitleUpdater';
+import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 
 // Add and update TODO tasks list via DOM of ALL TODO tasks
 function fetchAndUpdateAllTodoTaskInList(
@@ -14,14 +14,14 @@ function fetchAndUpdateAllTodoTaskInList(
   const updatedTodoTaskList = getOrSetTodoProjects()
     .getCurrentTodoProjects()
     .flatMap((allTodoProjects) =>
-      allTodoProjects.tasks.map((eashTask) => eashTask)
+      allTodoProjects.tasks.map((eachTask) => {
+        return eachTask;
+      })
     );
 
   getOrSetAllTodoTask().setNewTodoTask(updatedTodoTaskList);
 
-  console.log(getOrSetAllTodoTask().getAllTodoTask());
-
-  updateCurrentProjectTitleTwo(currentTodoTaskOptionName);
+  updateCurrentProjectTitle(currentTodoTaskOptionName);
 
   createAndAppendTodoTaskToDOM(
     currentTodoTasks,
