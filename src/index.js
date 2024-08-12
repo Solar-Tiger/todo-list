@@ -25,3 +25,7 @@ loadInitialTodoProjects();
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
+
+import { getArrayOfTaskByDate } from './utils/dateRangeFinder.js';
+
+getArrayOfTaskByDate();
