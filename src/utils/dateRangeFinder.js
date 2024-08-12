@@ -1,6 +1,6 @@
 import { getOrSetTodoProjects } from '../modules/todo_project_controllers/todoProjectController.js';
-import { getOrSetAllTodoTask } from '../modules/todo_project_controllers/todoTaskController.js';
-import { parse, isWithinInterval, addHours, addDays, addWeeks } from 'date-fns';
+import { getArrayOfArrayValues } from './helpers.js';
+import { parse, isWithinInterval, add } from 'date-fns';
 
 function getArrayOfTaskByDate() {
   // Get all TODO tasks from all TODO projects
@@ -9,45 +9,48 @@ function getArrayOfTaskByDate() {
     .flatMap((project) => project.tasks);
 
   // Get all TODO Tasks by date
-  const updatedTodoTaskListDueDate = getUpdatedTodoTaskListKey(
-    allTodoTask,
-    'taskDueDate'
-  );
+  const todoTaskDueDates = getArrayOfArrayValues(allTodoTask, 'taskDueDate');
 
-  // Parse date srings to date objects to see if they fall within a certain date range
-  const parsedDates = updatedTodoTaskListDueDate.map((date) =>
+  // Parse date srings to date objects to use in date-fns functions
+  const parsedDates = todoTaskDueDates.map((date) =>
     parse(date, 'MMM do, yyyy', new Date())
   );
-
-  console.log(parsedDates);
 
   // Make current day always the start date
   const todaysDate = new Date();
 
   // Functions used to return a boolean for specific date ranges
-  const isWithin24Hours = (date) =>
-    isWithinInterval(date, {
+  function check24Hours(date) {
+    return isWithinInterval(date, {
       start: todaysDate,
-      end: addHours(todaysDate, 24),
+      end: add(todaysDate, { hours: 24 }),
     });
+  }
 
-  // Array to hold TODO tasks that fall within a date range
-  const specificTodoTaskDueDates = [];
+  function check7Days(date) {
+    return isWithinInterval(date, {
+      start: todaysDate,
+      end: add(todaysDate, { days: 7 }),
+    });
+  }
+
+  function check1Month(date) {
+    return isWithinInterval(date, {
+      start: todaysDate,
+      end: add(todaysDate, { months: 1 }),
+    });
+  }
 
   // Functions used to find dates within a specific range and push those into an array
-  parsedDates.forEach((date, index) => {
-    if (isWithin24Hours(date)) {
-      specificTodoTaskDueDates.push(allTodoTask[index]);
+  const specificTodoTaskDueDates = parsedDates.filter((date, index) => {
+    if (check1Month(date) && todaysDate.getMonth() === date.getMonth()) {
+      return allTodoTask[index];
     }
   });
 
   console.log(specificTodoTaskDueDates);
 
   return specificTodoTaskDueDates;
-}
-
-function getUpdatedTodoTaskListKey(todoTaskArr, taskKey) {
-  return todoTaskArr.flatMap((eachTask) => eachTask[taskKey]);
 }
 
 export { getArrayOfTaskByDate };
