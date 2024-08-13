@@ -10,7 +10,8 @@ import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_upda
 import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 
 // TODO Tasks displayer options
-import { fetchAndUpdateAllTodoTaskInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
+
+import { displayTodoTasksForAllTodoProjects } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
 
 function loadSidebar() {
@@ -37,7 +38,7 @@ function loadSidebar() {
     taskDisplayOption.textContent = taskChoice;
 
     taskDisplayOption.addEventListener('click', () => {
-      fetchAndUpdateAllTodoTaskInList(getTodoTasksDOMList(), taskChoice);
+      displayTodoTasksForAllTodoProjects(getTodoTasksDOMList(), taskChoice);
     });
 
     taskOptionLi.appendChild(taskDisplayOption);
