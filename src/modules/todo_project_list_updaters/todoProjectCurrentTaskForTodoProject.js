@@ -13,8 +13,6 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
 
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
-      projectUpdater.updateCurrentDisplayedProject(index);
-
       updateCurrentProjectTitle(
         projectUpdater.getDisplayedProject().projectTitle
       );
