@@ -28,7 +28,7 @@ function loadSidebar() {
 
   taskDisplayerOptions.classList.add('todo-task-displayer-options');
 
-  const taskDisplayerChoices = ['All tasks', "Today's tasks", 'Weekly tasks'];
+  const taskDisplayerChoices = ['All tasks', 'Todays tasks', 'Weekly tasks'];
 
   taskDisplayerChoices.forEach((taskChoice) => {
     const taskOptionLi = document.createElement('li');
