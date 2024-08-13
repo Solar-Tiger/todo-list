@@ -1,56 +1,64 @@
 import { getOrSetTodoProjects } from '../modules/todo_project_controllers/todoProjectController.js';
-import { getArrayOfArrayValues } from './helpers.js';
+import { getArrayOfArrayValues, sortTodoTasksByDate } from './helpers.js';
 import { parse, isWithinInterval, add } from 'date-fns';
 
-function getArrayOfTaskByDate() {
+function getArrayOfTaskByClickedDeadline(clickedTaskDeadline) {
   // Get all TODO tasks from all TODO projects
-  const allTodoTask = getOrSetTodoProjects()
+  const allTodoTasks = getOrSetTodoProjects()
     .getCurrentTodoProjects()
     .flatMap((project) => project.tasks);
 
-  // Get all TODO Tasks by date
-  const todoTaskDueDates = getArrayOfArrayValues(allTodoTask, 'taskDueDate');
+  sortTodoTasksByDate(allTodoTasks);
 
-  // Parse date srings to date objects to use in date-fns functions
+  // Get an array of all TODO tasks by their key
+  const todoTaskDueDates = getArrayOfArrayValues(allTodoTasks, 'taskDueDate');
+
+  // Parse date srings to date objects of due date array
   const parsedDates = todoTaskDueDates.map((date) =>
     parse(date, 'MMM do, yyyy', new Date())
   );
 
-  // Make current day always the start date
-  const todaysDate = new Date();
-
-  // Functions used to return a boolean for specific date ranges
-  function check24Hours(date) {
-    return isWithinInterval(date, {
-      start: todaysDate,
-      end: add(todaysDate, { hours: 24 }),
-    });
-  }
-
-  function check7Days(date) {
-    return isWithinInterval(date, {
-      start: todaysDate,
-      end: add(todaysDate, { days: 7 }),
-    });
-  }
-
-  function check1Month(date) {
-    return isWithinInterval(date, {
-      start: todaysDate,
-      end: add(todaysDate, { months: 1 }),
-    });
-  }
-
-  // Functions used to find dates within a specific range and push those into an array
-  const specificTodoTaskDueDates = parsedDates.filter((date, index) => {
-    if (check1Month(date) && todaysDate.getMonth() === date.getMonth()) {
-      return allTodoTask[index];
-    }
-  });
-
-  console.log(specificTodoTaskDueDates);
-
-  return specificTodoTaskDueDates;
+  return getArrayOfCorrectTasksByDeadline(
+    parsedDates,
+    allTodoTasks,
+    clickedTaskDeadline
+  );
 }
 
-export { getArrayOfTaskByDate };
+// Function for getting an array correct TODO tasks due dates
+function getArrayOfCorrectTasksByDeadline(
+  taskDueDateArray,
+  allCurrentTodoTasks,
+  taskDeadline
+) {
+  let specificTodoTaskDueDates = [];
+  let todaysDate = new Date();
+
+  if (taskDeadline === 'All tasks') {
+    return allCurrentTodoTasks;
+  } else {
+    taskDueDateArray.forEach((date, index) => {
+      if (checkTimeFrame(todaysDate, date, taskDeadline)) {
+        specificTodoTaskDueDates.push(allCurrentTodoTasks[index]);
+      }
+    });
+    return specificTodoTaskDueDates;
+  }
+}
+
+// Functions used to return a boolean for specific date ranges
+function checkTimeFrame(startDate, date, currentTaskDeadline) {
+  if (currentTaskDeadline === 'Todays tasks') {
+    return isWithinInterval(date, {
+      start: startDate,
+      end: add(startDate, { hours: 24 }),
+    });
+  } else if (currentTaskDeadline === 'Weekly tasks') {
+    return isWithinInterval(date, {
+      start: startDate,
+      end: add(startDate, { days: 7 }),
+    });
+  }
+}
+
+export { getArrayOfTaskByClickedDeadline };
