@@ -1,5 +1,8 @@
 import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskController';
-import { fetchAndUpdateTodoTasksInList } from './todoTaskListUpdater';
+import {
+  fetchAndUpdateTodoTasksInList,
+  fetchAndUpdateAllTodoTaskInList,
+} from './todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
@@ -20,4 +23,21 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
   });
 }
 
-export { displayTodoTasksForCurrentTodoProject };
+function displayTodoTasksForAllTodoProjects(
+  currentTodoProjectList,
+  currentTodoTaskOptionName
+) {
+  fetchAndUpdateAllTodoTaskInList(
+    currentTodoProjectList,
+    currentTodoTaskOptionName
+  );
+
+  deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
+
+  updateCurrentProjectTitle(currentTodoTaskOptionName);
+}
+
+export {
+  displayTodoTasksForCurrentTodoProject,
+  displayTodoTasksForAllTodoProjects,
+};
