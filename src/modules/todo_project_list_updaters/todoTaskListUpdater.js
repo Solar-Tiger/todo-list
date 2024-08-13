@@ -1,57 +1,51 @@
 import todoTaskComplete from '../../assets/images/icons/check_circle.svg';
 import todoTaskDelete from '../../assets/images/icons/delete.svg';
 import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
-import { getOrSetAllTodoTask } from '../todo_project_controllers/todoTaskController';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
+import { getArrayOfTaskByClickedDeadline } from '../../utils/dateRangeFinder';
+import { sortTodoTasksByDate } from '../../utils/helpers';
+import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 
-// Add and update TODO tasks list via DOM of ALL TODO tasks
+// Add and update TODO tasks list via DOM of ALL TODO tasks or specific date
 function fetchAndUpdateAllTodoTaskInList(
   currentTodoTasks,
   currentTodoTaskOptionName
 ) {
   currentTodoTasks.textContent = '';
 
-  const updatedTodoTaskList = getOrSetTodoProjects()
-    .getCurrentTodoProjects()
-    .flatMap((allTodoProjects) =>
-      allTodoProjects.tasks.map((eachTask) => {
-        return eachTask;
-      })
-    );
-
-  getOrSetAllTodoTask().setNewTodoTask(updatedTodoTaskList);
-
-  updateCurrentProjectTitle(currentTodoTaskOptionName);
-
   createAndAppendTodoTaskToDOM(
     currentTodoTasks,
-    getOrSetAllTodoTask().getAllTodoTask()
+    getArrayOfTaskByClickedDeadline(currentTodoTaskOptionName)
   );
+
+  updateCurrentProjectTitle(currentTodoTaskOptionName);
 }
 
-// Add and update TODO tasks list via DOM
+// Add and update TODO tasks list via DOM for specific project
 function fetchAndUpdateTodoTasksInList(currentTodoTasks, clickedProjectIndex) {
   currentTodoTasks.textContent = '';
 
   let clickedProjectTasks;
+  let currentTodoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
 
   if (clickedProjectIndex === undefined) {
-    if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
+    if (currentTodoProjects.length === 0) {
       return;
     } else {
-      clickedProjectTasks =
-        getOrSetTodoProjects().getCurrentTodoProjects()[0].tasks;
+      clickedProjectTasks = sortTodoTasksByDate(currentTodoProjects[0].tasks);
     }
   } else {
-    if (getOrSetTodoProjects().getCurrentTodoProjects().length === 0) {
+    if (currentTodoProjects.length === 0) {
       return;
     }
-    clickedProjectTasks =
-      getOrSetTodoProjects().getCurrentTodoProjects()[clickedProjectIndex]
-        .tasks;
+    clickedProjectTasks = sortTodoTasksByDate(
+      currentTodoProjects[clickedProjectIndex].tasks
+    );
   }
 
   createAndAppendTodoTaskToDOM(currentTodoTasks, clickedProjectTasks);
+
+  projectUpdater.updateCurrentDisplayedProject(clickedProjectIndex);
 }
 
 function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
