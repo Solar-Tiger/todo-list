@@ -39,9 +39,13 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
       projectUpdater.updateCurrentDisplayedProject(0);
 
-      updateCurrentProjectTitle(
-        projectUpdater.getDisplayedProject().projectTitle
-      );
+      if (projectUpdater.getDisplayedProject() === undefined) {
+        updateCurrentProjectTitle();
+      } else {
+        updateCurrentProjectTitle(
+          projectUpdater.getDisplayedProject().projectTitle
+        );
+      }
 
       saveArrayToLocalStorage(
         'todoProjects',
