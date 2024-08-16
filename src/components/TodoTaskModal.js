@@ -1,4 +1,5 @@
 import { addTodoTaskToDisplay } from '../modules/todo_project_adders/todoTaskAdd';
+import { updateTodoProjectsForAddingTask } from '../modules/todo_project_updaters/todoProjectUpdateProjectOptions';
 
 function loadTodoTaskModal() {
   // Create and append TODO tasks dialog to TODO content
@@ -127,6 +128,9 @@ function loadTodoTaskModal() {
   });
 
   form.appendChild(priorityButtonsContainer);
+
+  // Create and append TODO projects we're adding the task to
+  updateTodoProjectsForAddingTask(form);
 
   // Create and append confirm or deny button container to dialog
   const btnContainer = document.createElement('div');
