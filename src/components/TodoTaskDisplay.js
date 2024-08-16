@@ -1,6 +1,10 @@
 import taskAdd from '../assets/images/icons/playlist_add.svg';
+import { getOrSetTodoProjects } from '../modules/todo_project_controllers/todoProjectController';
 import { showTodoTaskDialogModal } from './TodoTaskModal';
-import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
+import {
+  getOrSetAllTodoTask,
+  getTodoTasksDOMList,
+} from '../modules/todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTasksInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../modules/todo_project_removers/todoTaskRemove';
 
@@ -44,4 +48,10 @@ export function loadTodoTaskDisplay() {
 
   fetchAndUpdateTodoTasksInList(getTodoTasksDOMList());
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
+
+  const allTodoTasks = getOrSetTodoProjects()
+    .getCurrentTodoProjects()
+    .flatMap((project) => project.tasks);
+
+  getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
 }
