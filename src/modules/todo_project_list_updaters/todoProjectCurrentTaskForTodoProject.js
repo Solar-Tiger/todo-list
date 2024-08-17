@@ -3,9 +3,33 @@ import {
   fetchAndUpdateTodoTasksInList,
   fetchAndUpdateAllTodoTaskInList,
 } from './todoTaskListUpdater';
-import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
+import {
+  deleteAndUpdateCurrentTodoTasks,
+  deleteAndUpdateAllTodoTasks,
+} from '../todo_project_removers/todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
+
+function displayTodoTasksForAllTodoProjects(
+  currentDisplayedTasksList,
+  currentTodoTaskOptionName
+) {
+  fetchAndUpdateAllTodoTaskInList(
+    currentDisplayedTasksList,
+    currentTodoTaskOptionName
+  );
+
+  // Add event listeners to the delete button on TODO tasks
+  deleteAndUpdateAllTodoTasks(getTodoTasksDOMList());
+
+  // Updates displayed project title to be accessed later
+  updateCurrentProjectTitle(currentTodoTaskOptionName);
+
+  // Updates displayed project title
+  projectUpdater.updateCurrentDisplayedProjectOfAllTask(
+    currentTodoTaskOptionName
+  );
+}
 
 function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
   const clickedTodoProject = currentTodoProjectList.querySelectorAll('li > p');
@@ -16,25 +40,13 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
 
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
+      projectUpdater.updateCurrentDisplayedProject(index);
+
       updateCurrentProjectTitle(
         projectUpdater.getDisplayedProject().projectTitle
       );
     });
   });
-}
-
-function displayTodoTasksForAllTodoProjects(
-  currentTodoProjectList,
-  currentTodoTaskOptionName
-) {
-  fetchAndUpdateAllTodoTaskInList(
-    currentTodoProjectList,
-    currentTodoTaskOptionName
-  );
-
-  deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
-
-  updateCurrentProjectTitle(currentTodoTaskOptionName);
 }
 
 export {
