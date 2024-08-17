@@ -24,10 +24,19 @@ function sortTodoTasksByDate(todoTaskArr) {
   );
 }
 
+function getArrayContainingArrayItem(projectArray, arrayItem) {
+  for (let i = 0; i < projectArray.length; i++) {
+    for (let j = 0; j < projectArray[i].tasks.length; j++) {
+      if (projectArray[i].tasks[j].id === arrayItem) return projectArray[i].id;
+    }
+  }
+}
+
 export {
   findArrayElement,
   findArrayIndex,
   saveArrayToLocalStorage,
   getArrayOfArrayValues,
   sortTodoTasksByDate,
+  getArrayContainingArrayItem,
 };
