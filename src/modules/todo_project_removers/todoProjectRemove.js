@@ -1,15 +1,16 @@
 import {
   getOrSetTodoProjects,
   deleteTodoProject,
+  projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
 import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 import { fetchAndUpdateTodoTasksInList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from './todoTaskRemove';
-import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
+import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
   const currentTodoProjectListDeleteIcon =
@@ -46,6 +47,8 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
           projectUpdater.getDisplayedProject().projectTitle
         );
       }
+
+      updateTodoProjectsForAddingTask();
 
       saveArrayToLocalStorage(
         'todoProjects',
