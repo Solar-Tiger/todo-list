@@ -53,6 +53,9 @@ function getCurrentDisplayedProject() {
   let currentDisplayedProject;
 
   return {
+    updateCurrentDisplayedProjectOfAllTask: (clickedTaskOptionName) => {
+      currentDisplayedProject = clickedTaskOptionName;
+    },
     updateCurrentDisplayedProject: (updatedDisplayedProjectIndex) => {
       currentDisplayedProject =
         getOrSetTodoProjects().getCurrentTodoProjects()[
