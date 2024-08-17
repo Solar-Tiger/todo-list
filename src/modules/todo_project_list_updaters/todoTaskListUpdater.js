@@ -4,17 +4,16 @@ import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectCon
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { getArrayOfTaskByClickedDeadline } from '../../utils/dateRangeFinder';
 import { sortTodoTasksByDate } from '../../utils/helpers';
-import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 
 // Add and update TODO tasks list via DOM of ALL TODO tasks or specific date
 function fetchAndUpdateAllTodoTaskInList(
-  currentTodoTasks,
+  currentDisplayedTodoTasksList,
   currentTodoTaskOptionName
 ) {
-  currentTodoTasks.textContent = '';
+  currentDisplayedTodoTasksList.textContent = '';
 
   createAndAppendTodoTaskToDOM(
-    currentTodoTasks,
+    currentDisplayedTodoTasksList,
     getArrayOfTaskByClickedDeadline(currentTodoTaskOptionName)
   );
 
@@ -44,8 +43,6 @@ function fetchAndUpdateTodoTasksInList(currentTodoTasks, clickedProjectIndex) {
   }
 
   createAndAppendTodoTaskToDOM(currentTodoTasks, clickedProjectTasks);
-
-  projectUpdater.updateCurrentDisplayedProject(clickedProjectIndex);
 }
 
 function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
