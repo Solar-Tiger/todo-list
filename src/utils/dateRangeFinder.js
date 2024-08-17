@@ -1,4 +1,5 @@
 import { getOrSetTodoProjects } from '../modules/todo_project_controllers/todoProjectController.js';
+import { getOrSetAllTodoTask } from '../modules/todo_project_controllers/todoTaskController.js';
 import { getArrayOfArrayValues, sortTodoTasksByDate } from './helpers.js';
 import { parse, isWithinInterval, add } from 'date-fns';
 
@@ -8,6 +9,8 @@ function getArrayOfTaskByClickedDeadline(clickedTaskDeadline) {
     .getCurrentTodoProjects()
     .flatMap((project) => project.tasks);
 
+  getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
+
   sortTodoTasksByDate(allTodoTasks);
 
   // Get an array of all TODO tasks by their key
@@ -16,6 +19,14 @@ function getArrayOfTaskByClickedDeadline(clickedTaskDeadline) {
   // Parse date srings to date objects of due date array
   const parsedDates = todoTaskDueDates.map((date) =>
     parse(date, 'MMM do, yyyy', new Date())
+  );
+
+  getOrSetAllTodoTask().setNewTodoTask(
+    getArrayOfCorrectTasksByDeadline(
+      parsedDates,
+      allTodoTasks,
+      clickedTaskDeadline
+    )
   );
 
   return getArrayOfCorrectTasksByDeadline(
