@@ -14,12 +14,12 @@ import { loadSidebar } from './components/TodoProjectSidebar.js';
 import { loadTodoTaskDisplay } from './components/TodoTaskDisplay.js';
 import { loadNavHamburgerMenu } from './components/TodoProjectHamNavMenu.js';
 
+// Load initital TODO projects as placeholders
+loadInitialTodoProjects();
+
 // Add TODO modal in the backgroun to be opened and closed
 loadTodoProjectModal();
 loadTodoTaskModal();
-
-// Load initital TODO projects as placeholders
-loadInitialTodoProjects();
 
 // Load TODO project menus
 loadSidebar();
