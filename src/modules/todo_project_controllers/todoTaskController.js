@@ -35,7 +35,7 @@ function createTodoTask({ title, description, dueDate, priority }) {
 
 // Add TODO task to Project Task Array
 function addTodoTaskToArray(
-  projectID,
+  selectedProject,
   todoProjects,
   taskTitle,
   taskDescription,
@@ -51,8 +51,9 @@ function addTodoTaskToArray(
 
   // For debugging purposes
   // console.log(newTask);
+  console.log(selectedProject);
 
-  const currentProject = findArrayElement(projectID, todoProjects);
+  const currentProject = findArrayElement(selectedProject, todoProjects);
 
   currentProject.tasks.push(newTask);
 }
