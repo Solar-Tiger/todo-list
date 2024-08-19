@@ -1,7 +1,4 @@
-import {
-  getOrSetTodoProjects,
-  projectUpdater,
-} from '../todo_project_controllers/todoProjectController';
+import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
 
 import {
   getTodoTasksDOMList,
@@ -11,7 +8,9 @@ import {
 import { fetchAndUpdateTodoTasksInList } from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
-import { saveArrayToLocalStorage, findArrayIndex } from '../../utils/helpers';
+import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
+
+import { saveArrayToLocalStorage } from '../../utils/helpers';
 
 import { format, parseISO } from 'date-fns';
 
@@ -26,9 +25,10 @@ function addTodoTaskToDisplay(
   const todoProjectOption = document.querySelector(
     '#todo-tasks-dialog form select'
   );
-  let validTaskDueDate;
+  const todoProjectToAddTaskTo =
+    todoProjectOption.options[todoProjectOption.selectedIndex].text;
 
-  console.log(todoProjectOption.textContent);
+  let validTaskDueDate;
 
   if (todoProjects.length === 0) {
     todoTaskDialog.close();
@@ -43,7 +43,7 @@ function addTodoTaskToDisplay(
   }
 
   addTodoTaskToArray(
-    projectUpdater.getDisplayedProject().id,
+    todoProjectToAddTaskTo,
     todoProjects,
     taskName.value,
     taskDescription.value,
@@ -51,13 +51,13 @@ function addTodoTaskToDisplay(
     taskPriority.toUpperCase()
   );
 
-  const currentProjectIndex = findArrayIndex(
-    projectUpdater.getDisplayedProject().id,
-    todoProjects
+  fetchAndUpdateTodoTasksInList(
+    getTodoTasksDOMList(),
+    todoProjectOption.selectedIndex
   );
-
-  fetchAndUpdateTodoTasksInList(getTodoTasksDOMList(), currentProjectIndex);
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
+
+  updateCurrentProjectTitle(todoProjectToAddTaskTo);
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
