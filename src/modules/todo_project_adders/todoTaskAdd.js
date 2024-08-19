@@ -23,7 +23,12 @@ function addTodoTaskToDisplay(
   taskPriority
 ) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
+  const todoProjectOption = document.querySelector(
+    '#todo-tasks-dialog form select'
+  );
   let validTaskDueDate;
+
+  console.log(todoProjectOption.textContent);
 
   if (todoProjects.length === 0) {
     todoTaskDialog.close();
