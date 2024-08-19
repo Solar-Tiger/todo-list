@@ -1,7 +1,7 @@
 import { parse } from 'date-fns';
 
 function findArrayElement(arrElement, arr) {
-  return arr.find((arrayElement) => arrElement === arrayElement.id);
+  return arr.find((arrayElement) => arrElement === arrayElement.projectTitle);
 }
 
 function findArrayIndex(arrElement, arr) {
