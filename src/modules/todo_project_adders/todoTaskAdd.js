@@ -26,7 +26,7 @@ function addTodoTaskToDisplay(
     '#todo-tasks-dialog form select'
   );
   const todoProjectToAddTaskTo =
-    todoProjectOption.options[todoProjectOption.selectedIndex].text;
+    todoProjectOption.options[todoProjectOption.selectedIndex];
 
   let validTaskDueDate;
 
@@ -43,7 +43,7 @@ function addTodoTaskToDisplay(
   }
 
   addTodoTaskToArray(
-    todoProjectToAddTaskTo,
+    todoProjectToAddTaskTo.text,
     todoProjects,
     taskName.value,
     taskDescription.value,
@@ -57,7 +57,7 @@ function addTodoTaskToDisplay(
   );
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
-  updateCurrentProjectTitle(todoProjectToAddTaskTo);
+  updateCurrentProjectTitle(todoProjectToAddTaskTo.text);
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
