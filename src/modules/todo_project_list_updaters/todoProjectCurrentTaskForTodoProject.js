@@ -9,6 +9,7 @@ import {
 } from '../todo_project_removers/todoTaskRemove';
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
+import { hideTodoProjects } from '../todo_project_controllers/todoHamMenuController';
 
 function displayTodoTasksForAllTodoProjects(
   currentDisplayedTasksList,
@@ -29,6 +30,8 @@ function displayTodoTasksForAllTodoProjects(
   projectUpdater.updateCurrentDisplayedProjectOfAllTask(
     currentTodoTaskOptionName
   );
+
+  hideTodoProjects();
 }
 
 function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
@@ -45,6 +48,8 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
       updateCurrentProjectTitle(
         projectUpdater.getDisplayedProject().projectTitle
       );
+
+      hideTodoProjects();
     });
   });
 }
