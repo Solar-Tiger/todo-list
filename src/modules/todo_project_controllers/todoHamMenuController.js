@@ -11,4 +11,15 @@ function showTodoProjects() {
   });
 }
 
-export { showTodoProjects };
+function hideTodoProjects() {
+  const hamMenu = document.querySelector('.ham-menu');
+
+  const projectList = document.querySelector(
+    '.todo-projects-container-sidebar'
+  );
+
+  hamMenu.classList.toggle('active');
+  projectList.classList.toggle('active');
+}
+
+export { showTodoProjects, hideTodoProjects };
