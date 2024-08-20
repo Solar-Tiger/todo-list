@@ -22,20 +22,15 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
-  if (todoProjects.length === 1) {
-    projectUpdater.updateCurrentDisplayedProject(0);
-  } else if (todoProjects.length >= 2) {
-    const currentProjectIndex = findArrayIndex(
-      projectUpdater.getDisplayedProject().id,
-      todoProjects
-    );
-
-    projectUpdater.updateCurrentDisplayedProject(currentProjectIndex);
-  }
-
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
-  updateCurrentProjectTitle(projectUpdater.getDisplayedProject().projectTitle);
+  if (typeof projectUpdater.getDisplayedProject() === 'string') {
+    updateCurrentProjectTitle(projectUpdater.getDisplayedProject());
+  } else {
+    updateCurrentProjectTitle(
+      projectUpdater.getDisplayedProject().projectTitle
+    );
+  }
 
   updateTodoProjectsForAddingTask();
 
