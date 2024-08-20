@@ -22,18 +22,12 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
 
   const currentTodoTaskListItem = currentTodoTasksList.querySelectorAll('li');
 
-  const todoProjectOption = document.querySelector(
-    '#todo-tasks-dialog form select'
-  );
-  const todoProjectToAddTaskTo =
-    todoProjectOption.options[todoProjectOption.selectedIndex].text;
-
   currentTodoTaskListDeleteIcon.forEach((icon, index) => {
     icon.addEventListener('click', () => {
       const allTodoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
 
       deleteTodoTask(
-        todoProjectToAddTaskTo,
+        projectUpdater.getDisplayedProject().projectTitle,
         projectUpdater.getDisplayedProject().tasks[index].id,
         allTodoProjects
       );
