@@ -32,7 +32,7 @@ function createTodoProject(title) {
 }
 
 // Add TODO projects to Array
-function addTodoToArray(todoProjects, projectTitle) {
+function addTodoToArray(projectTitle) {
   const newTodoProject = createTodoProject(projectTitle);
 
   // For debugging purposes
