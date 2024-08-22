@@ -4,38 +4,41 @@ import {
   addTodoToArray,
   projectUpdater,
 } from '../todo_project_controllers/todoProjectController';
+import { getTodoTasksDOMList } from '../todo_project_controllers/todoTaskController';
 import { deleteAndUpdateCurrentTodoProjects } from '../todo_project_removers/todoProjectRemove';
 import { fetchAndUpdateTodoProjectList } from '../todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
+import { findArrayIndex } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
-  const currentTodoProjectTitle = document.querySelector(
-    '.todo-projects-sidebar-two h2'
-  );
   const projectName = document.querySelector('#project-name');
+  const todoProjectDomList = getTodoProjectsDOMList();
 
-  // Add new TODO project to projects array
-  addTodoToArray(todoProjects, todoProjectName.value);
+  addTodoToArray(todoProjectName.value);
+
+  const projectArrayIndex = findArrayIndex(
+    todoProjects[todoProjects.length - 1].id,
+    todoProjects
+  );
 
   // Update TODO project list to include new TODO project
-  fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
+  fetchAndUpdateTodoProjectList(todoProjectDomList);
 
   // Add event listener to each TODO project delete icon for removing TODO projects
-  deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
+  deleteAndUpdateCurrentTodoProjects(todoProjectDomList);
 
   // Add event listener to each TODO project "p" element for displaying TODO tasks each time a TODO project is clicked
-  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
+  displayTodoTasksForCurrentTodoProject(todoProjectDomList);
 
   // Update displayed project title based on if there are no projects or if at least 1 project exist
-  if (typeof projectUpdater.getDisplayedProject() === 'string') {
-    updateCurrentProjectTitle(projectUpdater.getDisplayedProject());
-  } else if (currentTodoProjectTitle.textContent === 'No projects!') {
-    updateCurrentProjectTitle(projectName.value);
-  }
+
+  getTodoTasksDOMList().textContent = '';
+  updateCurrentProjectTitle(projectName.value);
+  projectUpdater.updateCurrentDisplayedProject(projectArrayIndex);
 
   // Update TODO projects in the select elements option list
   updateTodoProjectsForAddingTask();
