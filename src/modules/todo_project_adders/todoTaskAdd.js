@@ -1,11 +1,17 @@
-import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
+import {
+  getOrSetTodoProjects,
+  projectUpdater,
+} from '../todo_project_controllers/todoProjectController';
 
 import {
   getTodoTasksDOMList,
   addTodoTaskToArray,
 } from '../todo_project_controllers/todoTaskController';
 
-import { fetchAndUpdateTodoTasksInList } from '../todo_project_list_updaters/todoTaskListUpdater';
+import {
+  fetchAndUpdateTodoTasksInList,
+  fetchAndUpdateAllTodoTaskInList,
+} from '../todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../todo_project_removers/todoTaskRemove';
 
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
@@ -25,6 +31,7 @@ function addTodoTaskToDisplay(
   const todoProjectOption = document.querySelector(
     '#todo-tasks-dialog form select'
   );
+  const projectTitle = projectUpdater.getDisplayedProject();
   const todoProjectToAddTaskTo =
     todoProjectOption.options[todoProjectOption.selectedIndex];
 
@@ -51,13 +58,26 @@ function addTodoTaskToDisplay(
     taskPriority.toUpperCase()
   );
 
-  fetchAndUpdateTodoTasksInList(
-    getTodoTasksDOMList(),
-    todoProjectOption.selectedIndex
-  );
-  deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
+  if (typeof projectUpdater.getDisplayedProject() !== 'string') {
+    fetchAndUpdateTodoTasksInList(
+      getTodoTasksDOMList(),
+      todoProjectOption.selectedIndex
+    );
 
-  updateCurrentProjectTitle(todoProjectToAddTaskTo.text);
+    updateCurrentProjectTitle(todoProjectToAddTaskTo.text);
+
+    projectUpdater.updateCurrentDisplayedProject(
+      todoProjectOption.selectedIndex
+    );
+  } else {
+    fetchAndUpdateAllTodoTaskInList(getTodoTasksDOMList(), projectTitle);
+
+    updateCurrentProjectTitle(projectTitle);
+
+    projectUpdater.updateCurrentDisplayedProjectOfAllTask(projectTitle);
+  }
+
+  deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
