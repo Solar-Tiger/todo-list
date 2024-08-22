@@ -11,6 +11,7 @@ import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_upda
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
+import { hideTodoProjects } from '../todo_project_controllers/todoHamMenuController';
 import { findArrayIndex } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
@@ -47,6 +48,8 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
   todoProjectDialog.close();
+
+  hideTodoProjects();
 }
 
 export { addTodoProjectToSidebar };
