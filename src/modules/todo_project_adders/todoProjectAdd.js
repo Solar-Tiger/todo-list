@@ -18,6 +18,10 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const projectName = document.querySelector('#project-name');
   const todoProjectDomList = getTodoProjectsDOMList();
 
+  if (findDuplicateName(projectName.value, todoProjects)) {
+    return;
+  }
+
   addTodoToArray(todoProjectName.value);
 
   // Update TODO project list to include new TODO project
@@ -46,6 +50,16 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
   todoProjectDialog.close();
+}
+
+function findDuplicateName(userProjectNameInput, projectArr) {
+  for (let i = 0; i < projectArr.length; i++) {
+    if (projectArr[i].projectTitle === userProjectNameInput) {
+      alert('No duplicate names!');
+
+      return true;
+    }
+  }
 }
 
 export { addTodoProjectToSidebar };
