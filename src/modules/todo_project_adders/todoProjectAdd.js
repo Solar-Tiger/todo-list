@@ -15,9 +15,6 @@ import { findArrayIndex } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
-  const currentTodoProjectTitle = document.querySelector(
-    '.todo-projects-sidebar-two h2'
-  );
   const projectName = document.querySelector('#project-name');
   const todoProjectDomList = getTodoProjectsDOMList();
 
@@ -32,21 +29,15 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   // Add event listener to each TODO project "p" element for displaying TODO tasks each time a TODO project is clicked
   displayTodoTasksForCurrentTodoProject(todoProjectDomList);
 
-  // Update displayed project title based on if there are no projects or if at least 1 project exist
-  if (typeof projectUpdater.getDisplayedProject() === 'string') {
-    updateCurrentProjectTitle(projectUpdater.getDisplayedProject());
-  } else if (currentTodoProjectTitle.textContent === 'No projects!') {
-    updateCurrentProjectTitle(projectName.value);
-  } else {
-    const projectArrayIndex = findArrayIndex(
-      todoProjects[todoProjects.length - 1].id,
-      todoProjects
-    );
+  // Update displayed project title and switch to it immediately
+  const projectArrayIndex = findArrayIndex(
+    todoProjects[todoProjects.length - 1].id,
+    todoProjects
+  );
 
-    getTodoTasksDOMList().textContent = '';
-    updateCurrentProjectTitle(projectName.value);
-    projectUpdater.updateCurrentDisplayedProject(projectArrayIndex);
-  }
+  getTodoTasksDOMList().textContent = '';
+  updateCurrentProjectTitle(projectName.value);
+  projectUpdater.updateCurrentDisplayedProject(projectArrayIndex);
 
   // Update TODO projects in the select elements option list
   updateTodoProjectsForAddingTask();
