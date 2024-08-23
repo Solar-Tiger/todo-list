@@ -7,7 +7,6 @@ import {
 } from '../modules/todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTasksInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../modules/todo_project_removers/todoTaskRemove';
-import { projectUpdater } from '../modules/todo_project_controllers/todoProjectController';
 
 export function loadTodoTaskDisplay() {
   const todoContent = document.querySelector('#todo-content');
@@ -25,6 +24,7 @@ export function loadTodoTaskDisplay() {
   const addTodoTaskButton = document.createElement('img');
 
   todoTaskHeader.classList.add('todo-task-header');
+
   todoTaskHeaderName.textContent = 'TODO Tasks';
 
   addTodoTaskButton.id = 'add-todo-task';
