@@ -11,20 +11,17 @@ import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_upda
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
-import { hideTodoProjects } from '../todo_project_controllers/todoHamMenuController';
 import { findArrayIndex } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
+  const currentTodoProjectTitle = document.querySelector(
+    '.todo-projects-sidebar-two h2'
+  );
   const projectName = document.querySelector('#project-name');
   const todoProjectDomList = getTodoProjectsDOMList();
 
   addTodoToArray(todoProjectName.value);
-
-  const projectArrayIndex = findArrayIndex(
-    todoProjects[todoProjects.length - 1].id,
-    todoProjects
-  );
 
   // Update TODO project list to include new TODO project
   fetchAndUpdateTodoProjectList(todoProjectDomList);
@@ -36,10 +33,20 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   displayTodoTasksForCurrentTodoProject(todoProjectDomList);
 
   // Update displayed project title based on if there are no projects or if at least 1 project exist
+  if (typeof projectUpdater.getDisplayedProject() === 'string') {
+    updateCurrentProjectTitle(projectUpdater.getDisplayedProject());
+  } else if (currentTodoProjectTitle.textContent === 'No projects!') {
+    updateCurrentProjectTitle(projectName.value);
+  } else {
+    const projectArrayIndex = findArrayIndex(
+      todoProjects[todoProjects.length - 1].id,
+      todoProjects
+    );
 
-  getTodoTasksDOMList().textContent = '';
-  updateCurrentProjectTitle(projectName.value);
-  projectUpdater.updateCurrentDisplayedProject(projectArrayIndex);
+    getTodoTasksDOMList().textContent = '';
+    updateCurrentProjectTitle(projectName.value);
+    projectUpdater.updateCurrentDisplayedProject(projectArrayIndex);
+  }
 
   // Update TODO projects in the select elements option list
   updateTodoProjectsForAddingTask();
@@ -48,8 +55,6 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   saveArrayToLocalStorage('todoProjects', todoProjects);
 
   todoProjectDialog.close();
-
-  hideTodoProjects();
 }
 
 export { addTodoProjectToSidebar };
