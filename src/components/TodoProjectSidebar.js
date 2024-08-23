@@ -47,7 +47,7 @@ function loadSidebar() {
 
   todoProjectSidebar.appendChild(taskDisplayerOptions);
 
-  //  Create and append title to sidebar with "add TODO project" button
+  // Create and append title header to sidebar with "add TODO project" button
   const todoProjectHeader = document.createElement('h1');
   const addTodoProjectButton = document.createElement('img');
 
@@ -65,6 +65,14 @@ function loadSidebar() {
   todoProjectSidebar.appendChild(todoProjectHeader);
   todoProjectHeader.appendChild(addTodoProjectButton);
 
+  // Create and append current TODO project to sidebar
+
+  const currentSelectedTodoProject = document.createElement('p');
+
+  currentSelectedTodoProject.classList.add('current-selected-todo-project');
+
+  todoProjectSidebar.appendChild(currentSelectedTodoProject);
+
   // Create and append list of TODO Projects to sidebar
   const todoProjectsList = document.createElement('ul');
 
@@ -81,6 +89,13 @@ function loadSidebar() {
   // Load proper displayed project when page is refreshed if projects are available
   if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
+  }
+
+  if (projectUpdater.getDisplayedProject() === undefined) {
+    currentSelectedTodoProject.textContent = 'No projects!';
+  } else {
+    currentSelectedTodoProject.textContent =
+      projectUpdater.getDisplayedProject().projectTitle;
   }
 }
 
