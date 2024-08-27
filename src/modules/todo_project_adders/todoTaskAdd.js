@@ -77,8 +77,6 @@ function addTodoTaskToDisplay(
     projectUpdater.updateCurrentDisplayedProjectOfAllTask(projectTitle);
   }
 
-  setTodoTaskPriorityColor(taskPriority.toUpperCase());
-
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
@@ -86,22 +84,4 @@ function addTodoTaskToDisplay(
   todoTaskDialog.close();
 }
 
-function setTodoTaskPriorityColor(taskPriority) {
-  const taskPriorityEl = document.querySelector('.todo-task p:nth-child(4)');
-
-  console.log(taskPriority);
-
-  switch (taskPriority) {
-    case 'LOW':
-      taskPriorityEl.style.color = 'darkgreen';
-      break;
-    case 'MEDIUM':
-      taskPriorityEl.style.color = 'darkyellow';
-      break;
-    case 'HIGH':
-      taskPriorityEl.style.color = 'darkred';
-      break;
-  }
-}
-
-export { addTodoTaskToDisplay, setTodoTaskPriorityColor };
+export { addTodoTaskToDisplay };
