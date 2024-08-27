@@ -119,7 +119,7 @@ function loadTodoTaskModal() {
     priorityLabel.setAttribute('for', priority.value);
     priorityLabel.textContent = priority.textContet;
 
-    priorityLabel.addEventListener('click', () => {
+    priorityButtonContainer.addEventListener('click', () => {
       taskCurrentPriority = priorityLabel.textContent;
     });
 
