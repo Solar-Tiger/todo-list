@@ -49,10 +49,6 @@ function addTodoTaskToArray(
     priority: taskPriority,
   });
 
-  // For debugging purposes
-  // console.log(newTask);
-  console.log(selectedProject);
-
   const currentProject = findArrayElement(selectedProject, todoProjects);
 
   currentProject.tasks.push(newTask);
@@ -62,11 +58,7 @@ function addTodoTaskToArray(
 function deleteTodoTask(projectId, taskId, arr) {
   const correctProject = findArrayElement(projectId, arr);
 
-  console.log(correctProject.tasks);
-
   const correctTaskIndex = findArrayIndex(taskId, correctProject.tasks);
-
-  console.log(correctTaskIndex);
 
   correctProject.tasks.splice(correctTaskIndex, 1);
 }

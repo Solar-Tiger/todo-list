@@ -1,5 +1,6 @@
 import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
 
+// Update available TODO project options in the select elements option list when a TODO project is added/removed
 function updateTodoProjectsForAddingTask(taskForm) {
   let updatedTaskForm;
 
@@ -13,12 +14,14 @@ function updateTodoProjectsForAddingTask(taskForm) {
     updatedTaskForm.textContent = '';
   }
 
+  // Create TODO project select element and option container
   const todoProjectTaskAddOptionContainer = document.createElement('div');
 
   todoProjectTaskAddOptionContainer.classList.add(
     'todo-project-task-add-option-container'
   );
 
+  // Create TODO project select and label elements
   const todoProjectAddLabel = document.createElement('label');
   const todoProjectAddSelect = document.createElement('select');
 
@@ -27,11 +30,13 @@ function updateTodoProjectsForAddingTask(taskForm) {
 
   todoProjectAddSelect.id = 'todo-projects';
 
+  // Based on available TODO projects, add them as options to the select element based on the project titles name
   getOrSetTodoProjects()
     .getCurrentTodoProjects()
     .forEach((project) => {
       const todoProjectAddOption = document.createElement('option');
 
+      // Make the option elements value lower case and kebob style for consistency using the project titles name
       todoProjectAddOption.value = project.projectTitle
         .toLowerCase()
         .replace(' ', '-');

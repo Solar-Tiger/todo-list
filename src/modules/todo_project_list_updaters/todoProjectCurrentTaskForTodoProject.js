@@ -11,6 +11,7 @@ import { projectUpdater } from '../todo_project_controllers/todoProjectControlle
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { hideTodoProjects } from '../todo_project_controllers/todoHamMenuController';
 
+// Displays all TODO tasks for a given tasks displayer option, updates the project title with that task displayer option and assigns event listeners to the icon buttons
 function displayTodoTasksForAllTodoProjects(
   currentDisplayedTasksList,
   currentTodoTaskOptionName
@@ -31,9 +32,11 @@ function displayTodoTasksForAllTodoProjects(
     currentTodoTaskOptionName
   );
 
+  // Collapse TODO projects menu on mobile
   hideTodoProjects();
 }
 
+// Displays all TODO tasks for a given project, updates the project title and assigns event listeners to the icon buttons
 function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
   const clickedTodoProject = currentTodoProjectList.querySelectorAll('li > p');
 
@@ -41,14 +44,18 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
     project.addEventListener('click', () => {
       fetchAndUpdateTodoTasksInList(getTodoTasksDOMList(), index);
 
+      // Add event listeners to the delete button on TODO tasks
       deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
+      // Update TODO project title based on selected TODO project
       projectUpdater.updateCurrentDisplayedProject(index);
 
+      // Updates displayed project title to be accessed later
       updateCurrentProjectTitle(
         projectUpdater.getDisplayedProject().projectTitle
       );
 
+      // Collapse TODO projects menu on mobile
       hideTodoProjects();
     });
   });

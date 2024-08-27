@@ -1,3 +1,4 @@
+// Show or hide TODO projects list on mobile
 function showTodoProjects() {
   const hamMenu = document.querySelector('.ham-menu');
 

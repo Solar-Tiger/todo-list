@@ -35,9 +35,6 @@ function createTodoProject(title) {
 function addTodoToArray(projectTitle) {
   const newTodoProject = createTodoProject(projectTitle);
 
-  // For debugging purposes
-  console.log(newTodoProject);
-
   todoProjects.push(newTodoProject);
 }
 
@@ -48,7 +45,7 @@ function deleteTodoProject(personId, arr) {
   arr.splice(correctProjectIndex, 1);
 }
 
-// Get current project to use to add new task to
+// Update current displayed project when adding/removing TODO projects/tasks or chaning between projects/display all task
 function getCurrentDisplayedProject() {
   let currentDisplayedProject;
 

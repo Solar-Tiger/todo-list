@@ -26,14 +26,17 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
     icon.addEventListener('click', () => {
       const allTodoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
 
+      // Delete TODO task from the containing TODO project array
       deleteTodoTask(
         projectUpdater.getDisplayedProject().projectTitle,
         projectUpdater.getDisplayedProject().tasks[index].id,
         allTodoProjects
       );
 
+      // Remove TODO task from DOM
       currentTodoTasksList.removeChild(currentTodoTaskListItem[index]);
 
+      // Update displayed TODO tasks with TODO task removed
       const currentProjectIndex = findArrayIndex(
         projectUpdater.getDisplayedProject().id,
         allTodoProjects
@@ -41,6 +44,7 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
 
       fetchAndUpdateTodoTasksInList(currentTodoTasksList, currentProjectIndex);
 
+      // Re-add event listeners to each TODO task delete icon
       deleteAndUpdateCurrentTodoTasks(currentTodoTasksList);
 
       saveArrayToLocalStorage('todoProjects', allTodoProjects);
@@ -48,6 +52,7 @@ function deleteAndUpdateCurrentTodoTasks(currentTodoTasksList) {
   });
 }
 
+// Update all TODO tasks based on current task displayer option and stay on that display option with the removed TODO task
 function deleteAndUpdateAllTodoTasks(currentTodoTasksList) {
   const currentTodoTaskListDeleteIcon = currentTodoTasksList.querySelectorAll(
     'li #todo-task-delete-icon'
@@ -60,23 +65,26 @@ function deleteAndUpdateAllTodoTasks(currentTodoTasksList) {
       const allTodoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
       const allTodoTasks = getOrSetAllTodoTask().getAllTodoTask();
 
-      console.log(allTodoTasks[index].id);
-
+      // Delete TODO task from the containing TODO project array
       deleteTodoTask(
         getArrayContainingArrayItem(allTodoProjects, allTodoTasks[index].id),
         allTodoTasks[index].id,
         allTodoProjects
       );
 
+      // Delete TODO task from array containing all todo tasks used in task displayer options
       deleteTodoProject(allTodoTasks[index].id, allTodoTasks);
 
+      // Remove TODO task from the DOM
       currentTodoTasksList.removeChild(currentTodoTaskListItem[index]);
 
+      // Display updated TODO tasks in DOM with removed TODO task
       fetchAndUpdateAllTodoTaskInList(
         currentTodoTasksList,
         projectUpdater.getDisplayedProject()
       );
 
+      // Re-add event listeners to each TODO tasks delete icon
       deleteAndUpdateAllTodoTasks(currentTodoTasksList);
 
       saveArrayToLocalStorage('todoProjects', allTodoProjects);

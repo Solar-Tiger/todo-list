@@ -1,7 +1,7 @@
 import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectController';
 import deleteProjectIcon from '../../assets/images/icons/delete.svg';
 
-// Add and update TODO project list via DOM
+// Add and update TODO project list with new TODO project via DOM
 function fetchAndUpdateTodoProjectList(currentTodoProjects) {
   currentTodoProjects.textContent = '';
 

@@ -90,8 +90,6 @@ function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
 }
 
 function setTodoTaskPriorityColor(taskPriority, taskListPriority) {
-  console.log(taskPriority, taskListPriority);
-
   switch (taskPriority) {
     case 'LOW':
       taskListPriority.style.color = '#2AA900';

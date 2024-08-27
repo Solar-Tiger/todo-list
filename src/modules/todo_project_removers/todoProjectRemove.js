@@ -39,7 +39,7 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
       // Re-add event listeners for TODO projects "p" element
       displayTodoTasksForCurrentTodoProject(currentTodoProjectList);
 
-      // Remove and update TODO tasks of the first TODO project in the array
+      // Remove and update TODO tasks of the first TODO project in the array and display first TODO project if available
       fetchAndUpdateTodoTasksInList(getTodoTasksDOMList(), 0);
 
       // Re-add event listeners to the TODO tasks delete icon

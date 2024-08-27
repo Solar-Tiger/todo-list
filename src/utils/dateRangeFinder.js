@@ -9,6 +9,7 @@ function getArrayOfTaskByClickedDeadline(clickedTaskDeadline) {
     .getCurrentTodoProjects()
     .flatMap((project) => project.tasks);
 
+  // Update all available TODO tasks
   getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
 
   sortTodoTasksByDate(allTodoTasks);
@@ -21,6 +22,7 @@ function getArrayOfTaskByClickedDeadline(clickedTaskDeadline) {
     parse(date, 'MMM do, yyyy', new Date())
   );
 
+  // Set all TODO tasks by correct clicked task displayer option in the correct date order
   getOrSetAllTodoTask().setNewTodoTask(
     getArrayOfCorrectTasksByDeadline(
       parsedDates,

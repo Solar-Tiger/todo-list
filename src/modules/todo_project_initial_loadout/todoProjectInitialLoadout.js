@@ -58,7 +58,7 @@ function loadInitialTodoProjects() {
       'Ratchet & Clank: Rift Apart',
       'The most recent installment in the Ratcht & Clank series for PS5 and recently released on Steam!',
       format(new Date(), 'LLL do, y'),
-      'VERY HIGH'
+      'HIGH'
     );
 
     createTodoTask(
