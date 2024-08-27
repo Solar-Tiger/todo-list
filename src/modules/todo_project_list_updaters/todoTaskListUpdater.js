@@ -4,7 +4,6 @@ import { getOrSetTodoProjects } from '../todo_project_controllers/todoProjectCon
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { getArrayOfTaskByClickedDeadline } from '../../utils/dateRangeFinder';
 import { sortTodoTasksByDate } from '../../utils/helpers';
-import { setTodoTaskPriorityColor } from '../todo_project_adders/todoTaskAdd';
 
 // Add and update TODO tasks list via DOM of ALL TODO tasks or specific date
 function fetchAndUpdateAllTodoTaskInList(
@@ -86,8 +85,26 @@ function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
 
     displayedTodoTask.appendChild(todoTask);
 
-    setTodoTaskPriorityColor(task.taskPriority);
+    setTodoTaskPriorityColor(task.taskPriority, todoTaskPriority);
   });
+}
+
+function setTodoTaskPriorityColor(taskPriority, taskListPriority) {
+  console.log(taskPriority, taskListPriority);
+
+  switch (taskPriority) {
+    case 'LOW':
+      taskListPriority.style.color = 'darkgreen';
+      break;
+    case 'MEDIUM':
+      taskListPriority.style.color = 'yellow';
+      break;
+    case 'HIGH':
+      taskListPriority.style.color = 'darkred';
+      break;
+    default:
+      console.log('No color');
+  }
 }
 
 export {
