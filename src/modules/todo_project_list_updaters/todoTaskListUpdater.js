@@ -94,13 +94,13 @@ function setTodoTaskPriorityColor(taskPriority, taskListPriority) {
 
   switch (taskPriority) {
     case 'LOW':
-      taskListPriority.style.color = 'darkgreen';
+      taskListPriority.style.color = '#2AA900';
       break;
     case 'MEDIUM':
-      taskListPriority.style.color = 'yellow';
+      taskListPriority.style.color = '#CCCF25';
       break;
     case 'HIGH':
-      taskListPriority.style.color = 'darkred';
+      taskListPriority.style.color = '#C52B0A';
       break;
     default:
       console.log('No color');
