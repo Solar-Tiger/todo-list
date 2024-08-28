@@ -260,6 +260,19 @@ body {
   }
 }
 
+.task-complete {
+  background-color: #747474;
+
+  & *:not(div) {
+    text-decoration: line-through;
+  }
+
+  & div img#todo-task-complete-icon {
+    color: green;
+    background-color: green;
+  }
+}
+
 /* TODO Project mobile hamburger menu */
 
 .todo-projects-sidebar-two {
