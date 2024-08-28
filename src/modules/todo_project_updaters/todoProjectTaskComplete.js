@@ -11,9 +11,7 @@ function toggleTaskCompletion() {
     e.preventDefault();
 
     if (e.target.id === 'todo-task-complete-icon') {
-      const todoTaskCard = document.querySelector('.todo-task');
-
-      todoTaskCard.classList.toggle('task-complete');
+      e.target.parentElement.parentElement.classList.toggle('task-complete');
     }
   });
 }
