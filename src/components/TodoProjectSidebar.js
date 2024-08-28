@@ -2,9 +2,9 @@ import projectAdd from '../assets/images/icons/playlist_add.svg';
 import { showTodoProjectDialogModal } from './TodoProjectModal';
 import { deleteAndUpdateCurrentTodoProjects } from '../modules/todo_project_removers/todoProjectRemove';
 import {
-  projectUpdater,
-  getOrSetTodoProjects,
-  getTodoProjectsDOMList,
+	projectUpdater,
+	getOrSetTodoProjects,
+	getTodoProjectsDOMList,
 } from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
@@ -15,88 +15,95 @@ import { displayTodoTasksForAllTodoProjects } from '../modules/todo_project_list
 import { getTodoTasksDOMList } from '../modules/todo_project_controllers/todoTaskController';
 
 function loadSidebar() {
-  const todoContent = document.querySelector('#todo-content');
+	const todoContent = document.querySelector('#todo-content');
 
-  //  Create and append sidebar to todo content container
-  const todoProjectSidebar = document.createElement('div');
+	//  Create and append sidebar to todo content container
+	const todoProjectSidebar = document.createElement('div');
 
-  todoProjectSidebar.classList.add('todo-projects-container-sidebar');
+	todoProjectSidebar.classList.add('todo-projects-container-sidebar');
 
-  todoContent.appendChild(todoProjectSidebar);
+	todoContent.appendChild(todoProjectSidebar);
 
-  // Create and append options to display various task from all projects
-  const taskDisplayerOptions = document.createElement('ul');
+	// Create and append options to display various task from all projects
+	const taskDisplayerOptions = document.createElement('ul');
 
-  taskDisplayerOptions.classList.add('todo-task-displayer-options');
+	taskDisplayerOptions.classList.add('todo-task-displayer-options');
 
-  const taskDisplayerChoices = ['All tasks', 'Todays tasks', 'Weekly tasks'];
+	const taskDisplayerChoices = [
+		'All tasks',
+		'Next 24 hours',
+		'Upcoming 7 days',
+	];
 
-  taskDisplayerChoices.forEach((taskChoice) => {
-    const taskOptionLi = document.createElement('li');
-    const taskDisplayOption = document.createElement('p');
+	taskDisplayerChoices.forEach((taskChoice) => {
+		const taskOptionLi = document.createElement('li');
+		const taskDisplayOption = document.createElement('p');
 
-    taskDisplayOption.textContent = taskChoice;
+		taskDisplayOption.textContent = taskChoice;
 
-    taskDisplayOption.addEventListener('click', () => {
-      displayTodoTasksForAllTodoProjects(getTodoTasksDOMList(), taskChoice);
-    });
+		taskDisplayOption.addEventListener('click', () => {
+			displayTodoTasksForAllTodoProjects(
+				getTodoTasksDOMList(),
+				taskChoice
+			);
+		});
 
-    taskOptionLi.appendChild(taskDisplayOption);
-    taskDisplayerOptions.appendChild(taskOptionLi);
-  });
+		taskOptionLi.appendChild(taskDisplayOption);
+		taskDisplayerOptions.appendChild(taskOptionLi);
+	});
 
-  todoProjectSidebar.appendChild(taskDisplayerOptions);
+	todoProjectSidebar.appendChild(taskDisplayerOptions);
 
-  // Create and append title header to sidebar with "add TODO project" button
-  const todoProjectHeader = document.createElement('h1');
-  const addTodoProjectButton = document.createElement('img');
+	// Create and append title header to sidebar with "add TODO project" button
+	const todoProjectHeader = document.createElement('h1');
+	const addTodoProjectButton = document.createElement('img');
 
-  todoProjectHeader.classList.add('todo-projects-header');
+	todoProjectHeader.classList.add('todo-projects-header');
 
-  todoProjectHeader.textContent = 'TODO Projects';
+	todoProjectHeader.textContent = 'TODO Projects';
 
-  addTodoProjectButton.id = 'add-todo-project';
-  addTodoProjectButton.src = projectAdd;
-  addTodoProjectButton.width = '48';
-  addTodoProjectButton.addEventListener('click', () => {
-    showTodoProjectDialogModal();
-  });
+	addTodoProjectButton.id = 'add-todo-project';
+	addTodoProjectButton.src = projectAdd;
+	addTodoProjectButton.width = '48';
+	addTodoProjectButton.addEventListener('click', () => {
+		showTodoProjectDialogModal();
+	});
 
-  todoProjectSidebar.appendChild(todoProjectHeader);
-  todoProjectHeader.appendChild(addTodoProjectButton);
+	todoProjectSidebar.appendChild(todoProjectHeader);
+	todoProjectHeader.appendChild(addTodoProjectButton);
 
-  // Create and append current TODO project to sidebar
+	// Create and append current TODO project to sidebar
 
-  const currentSelectedTodoProject = document.createElement('p');
+	const currentSelectedTodoProject = document.createElement('p');
 
-  currentSelectedTodoProject.classList.add('current-selected-todo-project');
+	currentSelectedTodoProject.classList.add('current-selected-todo-project');
 
-  todoProjectSidebar.appendChild(currentSelectedTodoProject);
+	todoProjectSidebar.appendChild(currentSelectedTodoProject);
 
-  // Create and append list of TODO Projects to sidebar
-  const todoProjectsList = document.createElement('ul');
+	// Create and append list of TODO Projects to sidebar
+	const todoProjectsList = document.createElement('ul');
 
-  todoProjectsList.classList.add('todo-projects-list__desktop');
-  todoProjectsList.id = 'todo-projects-list';
+	todoProjectsList.classList.add('todo-projects-list__desktop');
+	todoProjectsList.id = 'todo-projects-list';
 
-  todoProjectSidebar.appendChild(todoProjectsList);
+	todoProjectSidebar.appendChild(todoProjectsList);
 
-  // Display preloaded TODO projects or ones from Local Storage and related TODO tasks
-  fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
-  deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
-  displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
+	// Display preloaded TODO projects or ones from Local Storage and related TODO tasks
+	fetchAndUpdateTodoProjectList(getTodoProjectsDOMList());
+	deleteAndUpdateCurrentTodoProjects(getTodoProjectsDOMList());
+	displayTodoTasksForCurrentTodoProject(getTodoProjectsDOMList());
 
-  // Load proper displayed project when page is refreshed if projects are available
-  if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
-    projectUpdater.updateCurrentDisplayedProject(0);
-  }
+	// Load proper displayed project when page is refreshed if projects are available
+	if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
+		projectUpdater.updateCurrentDisplayedProject(0);
+	}
 
-  if (projectUpdater.getDisplayedProject() === undefined) {
-    currentSelectedTodoProject.textContent = 'No projects!';
-  } else {
-    currentSelectedTodoProject.textContent =
-      projectUpdater.getDisplayedProject().projectTitle;
-  }
+	if (projectUpdater.getDisplayedProject() === undefined) {
+		currentSelectedTodoProject.textContent = 'No projects!';
+	} else {
+		currentSelectedTodoProject.textContent =
+			projectUpdater.getDisplayedProject().projectTitle;
+	}
 }
 
 export { loadSidebar };
