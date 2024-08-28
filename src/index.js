@@ -29,3 +29,7 @@ loadTodoTaskDisplay();
 import { projectUpdater } from './modules/todo_project_controllers/todoProjectController.js';
 
 window.projectUpdater = projectUpdater;
+
+import { toggleTaskCompletion } from './modules/todo_project_updaters/todoProjectTaskComplete.js';
+
+toggleTaskCompletion();
