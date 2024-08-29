@@ -60,6 +60,7 @@ function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
     todoTaskIconsContainer.classList.add('todo-task-icons-container');
 
     todoTask.classList.add('todo-task');
+    todoTask.setAttribute('data-task-id', `${task.id}`);
     todoTaskName.textContent = task.taskTitle;
     todoTaskDescription.textContent = task.taskDescription;
     todoTaskDueDate.textContent = `Due Date: ${task.taskDueDate}`;
@@ -86,6 +87,7 @@ function createAndAppendTodoTaskToDOM(displayedTodoTask, projectTasks) {
     displayedTodoTask.appendChild(todoTask);
 
     setTodoTaskPriorityColor(task.taskPriority, todoTaskPriority);
+    setTaskCompleteStatus(task.isComplete, todoTask);
   });
 }
 
@@ -102,6 +104,12 @@ function setTodoTaskPriorityColor(taskPriority, taskListPriority) {
       break;
     default:
       console.log('No color');
+  }
+}
+
+function setTaskCompleteStatus(taskIsCompleteStatus, taskCardIsCompleteStatus) {
+  if (taskIsCompleteStatus) {
+    taskCardIsCompleteStatus.classList.add('task-complete');
   }
 }
 
