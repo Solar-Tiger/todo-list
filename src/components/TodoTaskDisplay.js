@@ -7,6 +7,7 @@ import {
 } from '../modules/todo_project_controllers/todoTaskController';
 import { fetchAndUpdateTodoTasksInList } from '../modules/todo_project_list_updaters/todoTaskListUpdater';
 import { deleteAndUpdateCurrentTodoTasks } from '../modules/todo_project_removers/todoTaskRemove';
+import { toggleTaskCompletion } from '../modules/todo_project_updaters/todoProjectTaskComplete';
 
 export function loadTodoTaskDisplay() {
   const todoContent = document.querySelector('#todo-content');
@@ -53,4 +54,6 @@ export function loadTodoTaskDisplay() {
     .flatMap((project) => project.tasks);
 
   getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
+
+  toggleTaskCompletion();
 }
