@@ -25,7 +25,8 @@ function getTodoTasksDOMList() {
 // Create TODO task
 function createTodoTask({ title, description, dueDate, priority }) {
   return {
-    id: createId(), // Generate unique ID
+    id: createId(), // Generate unique ID,
+    isComplete: false,
     taskTitle: title,
     taskDescription: description,
     taskDueDate: dueDate,
