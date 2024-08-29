@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #d8d8d8;
+  background-color: #b8b8b8;
 }
 
 .todo-project-dialog,
@@ -262,14 +262,15 @@ body {
 
 .task-complete {
   background-color: #747474;
+  opacity: 0.6;
 
   & *:not(div) {
     text-decoration: line-through;
   }
 
   & div img#todo-task-complete-icon {
-    color: green;
     background-color: green;
+    border-radius: 50%;
   }
 }
 
