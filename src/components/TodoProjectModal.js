@@ -15,7 +15,7 @@ function loadTodoProjectModal() {
   const form = document.createElement('form');
 
   form.action = '';
-  form.method = 'get';
+  form.method = 'dialog';
   form.class = 'todo-project-form';
 
   dialog.appendChild(form);
@@ -30,13 +30,15 @@ function loadTodoProjectModal() {
   const projectName = document.createElement('label');
 
   projectName.for = 'project-name';
-  projectName.textContent = 'Project name:';
+  projectName.textContent = 'Project name (Max 16 characters)';
 
   const projectNameInput = document.createElement('input');
 
   projectNameInput.type = 'text';
   projectNameInput.id = 'project-name';
   projectNameInput.name = 'project-name';
+  projectNameInput.maxLength = 16;
+  projectNameInput.setAttribute('required', '');
 
   form.appendChild(projectNameInputContainer);
   projectNameInputContainer.append(projectName, projectNameInput);
@@ -54,11 +56,18 @@ function loadTodoProjectModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    addTodoProjectToSidebar(dialog, projectNameInput);
+    if (form.checkValidity() === true) {
+      addTodoProjectToSidebar(dialog, projectNameInput);
+    }
   });
 
   cancelBtn.textContent = 'Cancel';
-  cancelBtn.formMethod = 'dialog';
+
+  cancelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    dialog.close();
+  });
 
   btnContainer.append(confirmBtn, cancelBtn);
 
