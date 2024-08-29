@@ -262,7 +262,6 @@ body {
 
 .task-complete {
   background-color: #747474;
-  opacity: 0.6;
 
   & *:not(div) {
     text-decoration: line-through;
