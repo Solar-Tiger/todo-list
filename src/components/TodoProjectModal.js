@@ -54,10 +54,12 @@ function loadTodoProjectModal() {
   confirmBtn.textContent = 'Add Project';
 
   confirmBtn.addEventListener('click', (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     if (form.checkValidity() === true) {
       addTodoProjectToSidebar(dialog, projectNameInput);
+    } else {
+      form.reportValidity();
     }
   });
 
