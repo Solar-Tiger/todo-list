@@ -56,11 +56,12 @@ function loadTodoProjectModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    if (form.checkValidity() === true) {
-      addTodoProjectToSidebar(dialog, projectNameInput);
-    } else {
+    if (!form.checkValidity()) {
       form.reportValidity();
+      return;
     }
+
+    addTodoProjectToSidebar(dialog, projectNameInput);
   });
 
   cancelBtn.textContent = 'Cancel';
