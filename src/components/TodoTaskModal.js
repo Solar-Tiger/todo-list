@@ -40,6 +40,9 @@ function loadTodoTaskModal() {
   taskNameInput.type = 'text';
   taskNameInput.id = 'task-name';
   taskNameInput.name = 'task-name';
+  taskNameInput.placeholder = '24 characters max...';
+  taskNameInput.maxLength = 24;
+  taskNameInput.setAttribute('required', '');
 
   form.appendChild(taskNameInputContainer);
   taskNameInputContainer.append(taskNameLabel, taskNameInput);
@@ -58,9 +61,10 @@ function loadTodoTaskModal() {
 
   taskDescriptionInput.id = 'task-description';
   taskDescriptionInput.name = 'task-description';
-  taskDescriptionInput.placeholder = 'Task description...';
+  taskDescriptionInput.placeholder =
+    'Task description (optional)... 75 character limit';
   taskDescriptionInput.rows = 5;
-  taskDescriptionInput.maxLength = 100;
+  taskDescriptionInput.maxLength = 75;
   taskDescriptionInput.style.resize = 'none';
 
   taskTextareaContainer.append(taskTextareaLabel, taskDescriptionInput);
@@ -72,6 +76,7 @@ function loadTodoTaskModal() {
   taskDateInput.classList.add('todo-task-date-input');
 
   taskDateInput.type = 'date';
+  taskDateInput.setAttribute('required', '');
 
   form.appendChild(taskDateInput);
 
@@ -88,6 +93,7 @@ function loadTodoTaskModal() {
       name: 'priority-button',
       value: 'low-priority',
       textContet: 'Low',
+      isChecked: true,
     },
     {
       type: 'radio',
@@ -123,6 +129,10 @@ function loadTodoTaskModal() {
       taskCurrentPriority = priorityLabel.textContent;
     });
 
+    if (priority.isChecked) {
+      priorityBtn.checked = true;
+    }
+
     priorityButtonContainer.append(priorityBtn, priorityLabel);
     priorityButtonsContainer.appendChild(priorityButtonContainer);
   });
@@ -144,6 +154,11 @@ function loadTodoTaskModal() {
   confirmBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     addTodoTaskToDisplay(
       todoTaskDialog,
       taskNameInput,
@@ -154,7 +169,12 @@ function loadTodoTaskModal() {
   });
 
   cancelBtn.textContent = 'Cancel';
-  cancelBtn.formMethod = 'dialog';
+
+  cancelBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    dialog.close();
+  });
 
   btnContainer.append(confirmBtn, cancelBtn);
 
