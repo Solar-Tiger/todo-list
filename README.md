@@ -16,7 +16,7 @@ Just run "npm install" and you're good to go
 
 - ~~Display current TODO Project in header (Center on mobile and left of "TODO Task" on desktop)~~
 - ~~Utilize local storage to save and load projects on different devices~~
-- Use **"date-fns"** to display TODO's for current project by 24 hours, 1 week or 1 month
+- ~~Use **"date-fns"** to display TODO tasks for current project by All tasks, Next 24 hours, upcoming 7 days~~
 - Create way to edit a TODO Task
 - Option to sort by priority
-- Option to switch to newly created TODO Project to start adding TODO Tasks immediately
+- ~~Option to switch to newly created TODO Project to start adding TODO Tasks immediately~~
