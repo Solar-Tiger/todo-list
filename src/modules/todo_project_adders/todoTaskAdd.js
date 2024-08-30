@@ -6,6 +6,7 @@ import {
 import {
   getTodoTasksDOMList,
   addTodoTaskToArray,
+  getOrSetAllTodoTask,
 } from '../todo_project_controllers/todoTaskController';
 
 import {
@@ -80,6 +81,13 @@ function addTodoTaskToDisplay(
   deleteAndUpdateCurrentTodoTasks(getTodoTasksDOMList());
 
   saveArrayToLocalStorage('todoProjects', todoProjects);
+
+  // Update all TODO tasks array with new TODO task
+  const allTodoTasks = getOrSetTodoProjects()
+    .getCurrentTodoProjects()
+    .flatMap((project) => project.tasks);
+
+  getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
 
   todoTaskDialog.close();
 }
