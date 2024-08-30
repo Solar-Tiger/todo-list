@@ -10,6 +10,7 @@ import {
 import { projectUpdater } from '../todo_project_controllers/todoProjectController';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { hideTodoProjects } from '../todo_project_controllers/todoHamMenuController';
+import { updateAllTodoTasksArray } from '../../utils/helpers';
 
 // Displays all TODO tasks for a given tasks displayer option, updates the project title with that task displayer option and assigns event listeners to the icon buttons
 function displayTodoTasksForAllTodoProjects(
@@ -31,6 +32,9 @@ function displayTodoTasksForAllTodoProjects(
   projectUpdater.updateCurrentDisplayedProjectOfAllTask(
     currentTodoTaskOptionName
   );
+
+  // Updates TODO tasks array if it's empty to use as event listener for completing TODO tasks
+  updateAllTodoTasksArray();
 
   // Collapse TODO projects menu on mobile
   hideTodoProjects();
@@ -54,6 +58,9 @@ function displayTodoTasksForCurrentTodoProject(currentTodoProjectList) {
       updateCurrentProjectTitle(
         projectUpdater.getDisplayedProject().projectTitle
       );
+
+      // Updates TODO tasks array if it's empty to use as event listener for completing TODO tasks
+      updateAllTodoTasksArray();
 
       // Collapse TODO projects menu on mobile
       hideTodoProjects();
