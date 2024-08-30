@@ -9,7 +9,7 @@ body {
 
 .todo-project-dialog,
 .todo-task-dialog {
-  width: 300px;
+  width: 330px;
 }
 
 .todo-project-dialog > form,
@@ -22,7 +22,7 @@ body {
 
 .todo-project-dialog > form {
   gap: 2.5rem;
-  width: 240px;
+  width: 260px;
   height: 250px;
   margin: auto;
 }
@@ -57,9 +57,9 @@ body {
 }
 
 .todo-task-dialog > form {
-  gap: 1.4rem;
-  width: 240px;
-  height: 550px;
+  gap: 1.6rem;
+  width: 260px;
+  height: 560px;
   margin: auto;
 }
 
@@ -80,11 +80,12 @@ body {
 
 .todo-task-date-input {
   padding: var(--todo-project-input-padding);
+  width: 100%;
 }
 
 .todo-task-priority-button-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   div * {
     margin: 0px 0.1rem;
@@ -111,8 +112,7 @@ body {
 .todo-content {
   display: grid;
   grid-template-rows: min-content 1fr;
-  min-height: 100vh;
-  max-height: 100vh;
+  height: 100dvh;
 }
 
 .todo-projects-container-sidebar {
@@ -134,7 +134,7 @@ body {
     }
 
     & p {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: bold;
       cursor: pointer;
     }
@@ -156,7 +156,7 @@ body {
   & .current-selected-todo-project {
     text-align: center;
     border: 2px solid black;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
   }
 
@@ -175,7 +175,7 @@ body {
     }
 
     & p {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: bold;
     }
 
@@ -286,7 +286,7 @@ body {
   background-color: #aaa;
 
   & h2 {
-    font-size: 32px;
+    font-size: 28px;
     grid-column-start: 2;
   }
 }
