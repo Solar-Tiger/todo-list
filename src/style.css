@@ -238,6 +238,7 @@ body {
 
   & p:nth-child(2) {
     width: 28ch;
+    word-wrap: break-word;
   }
 
   & p:nth-child(3) {
