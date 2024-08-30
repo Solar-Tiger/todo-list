@@ -30,13 +30,14 @@ function loadTodoProjectModal() {
   const projectName = document.createElement('label');
 
   projectName.for = 'project-name';
-  projectName.textContent = 'Project name (Max 16 characters)';
+  projectName.textContent = 'Project name:';
 
   const projectNameInput = document.createElement('input');
 
   projectNameInput.type = 'text';
   projectNameInput.id = 'project-name';
   projectNameInput.name = 'project-name';
+  projectNameInput.placeholder = '16 characters max...';
   projectNameInput.maxLength = 16;
   projectNameInput.setAttribute('required', '');
 
