@@ -1,4 +1,6 @@
 import { parse } from 'date-fns';
+import { getOrSetTodoProjects } from '../modules/todo_project_controllers/todoProjectController';
+import { getOrSetAllTodoTask } from '../modules/todo_project_controllers/todoTaskController';
 
 function findArrayElement(arrElement, arr) {
   return arr.find((arrayElement) => arrElement === arrayElement.projectTitle);
@@ -33,6 +35,17 @@ function getArrayContainingArrayItem(projectArray, arrayItem) {
   }
 }
 
+// Update all TODO tasks array with new TODO task
+function updateAllTodoTasksArray() {
+  if (getOrSetAllTodoTask().getAllTodoTask().length === 0) {
+    const allTodoTasks = getOrSetTodoProjects()
+      .getCurrentTodoProjects()
+      .flatMap((project) => project.tasks);
+
+    getOrSetAllTodoTask().setNewTodoTask(allTodoTasks);
+  }
+}
+
 export {
   findArrayElement,
   findArrayIndex,
@@ -40,4 +53,5 @@ export {
   getArrayOfArrayValues,
   sortTodoTasksByDate,
   getArrayContainingArrayItem,
+  updateAllTodoTasksArray,
 };
