@@ -117,7 +117,7 @@ body {
 
 .todo-projects-container-sidebar {
   display: grid;
-  grid-template-rows: repeat(3, min-content) 1fr;
+  grid-template-rows: repeat(2, min-content) 1fr;
   background-color: skyblue;
 
   & .todo-task-displayer-options {
@@ -151,13 +151,6 @@ body {
       margin-left: auto;
       cursor: pointer;
     }
-  }
-
-  & .current-selected-todo-project {
-    text-align: center;
-    border: 2px solid black;
-    font-size: 1.8rem;
-    font-weight: bold;
   }
 
   & .todo-projects-list__desktop {
