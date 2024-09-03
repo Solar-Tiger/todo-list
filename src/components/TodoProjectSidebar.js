@@ -75,6 +75,25 @@ function loadSidebar() {
   todoProjectsList.classList.add('todo-projects-list__desktop');
   todoProjectsList.id = 'todo-projects-list';
 
+  // Use "Event Delgation" to change the background color of each TODO project to show which is selected
+  todoProjectsList.addEventListener('click', (e) => {
+    // console.dir(e.target);
+
+    if (e.target.tagName.toLowerCase() === 'p') {
+      console.log("I'm a P element!");
+
+      const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
+
+      allTodoProjects.forEach((project) => {
+        if (project.classList.contains('current-selected-todo-project')) {
+          project.classList.remove('current-selected-todo-project');
+        }
+      });
+
+      e.target.classList.add('current-selected-todo-project');
+    }
+  });
+
   todoProjectSidebar.appendChild(todoProjectsList);
 
   // Display preloaded TODO projects or ones from Local Storage and related TODO tasks
@@ -85,6 +104,16 @@ function loadSidebar() {
   // Load proper displayed project when page is refreshed if projects are available
   if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
+    const firstTodoProject = todoProjectsList.querySelector('li > p');
+    const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
+
+    allTodoProjects.forEach((project) => {
+      if (project.classList.contains('current-selected-todo-project')) {
+        project.classList.remove('current-selected-todo-project');
+      }
+    });
+
+    firstTodoProject.classList.add('current-selected-todo-project');
   }
 }
 
