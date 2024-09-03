@@ -179,6 +179,10 @@ body {
   }
 }
 
+.current-selected-todo-project {
+  background-color: rgb(140, 140, 140, 0.5);
+}
+
 .todo-task-container {
   display: grid;
   grid-template-rows: min-content 1fr;
