@@ -8,6 +8,7 @@ import {
 } from '../modules/todo_project_controllers/todoProjectController';
 import { fetchAndUpdateTodoProjectList } from '../modules/todo_project_list_updaters/todoProjectListUpdate';
 import { displayTodoTasksForCurrentTodoProject } from '../modules/todo_project_list_updaters/todoProjectCurrentTaskForTodoProject';
+import { highlightTodoProject } from '../utils/helpers';
 
 // TODO Tasks displayer options
 
@@ -80,8 +81,6 @@ function loadSidebar() {
     // console.dir(e.target);
 
     if (e.target.tagName.toLowerCase() === 'p') {
-      console.log("I'm a P element!");
-
       const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
 
       allTodoProjects.forEach((project) => {
@@ -104,16 +103,7 @@ function loadSidebar() {
   // Load proper displayed project when page is refreshed if projects are available
   if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
-    const firstTodoProject = todoProjectsList.querySelector('li > p');
-    const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
-
-    allTodoProjects.forEach((project) => {
-      if (project.classList.contains('current-selected-todo-project')) {
-        project.classList.remove('current-selected-todo-project');
-      }
-    });
-
-    firstTodoProject.classList.add('current-selected-todo-project');
+    highlightTodoProject(todoProjectsList);
   }
 }
 
