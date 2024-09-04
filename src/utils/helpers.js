@@ -50,6 +50,7 @@ function updateAllTodoTasksArray() {
 function highlightTodoProject(todoProjects) {
   if (todoProjects.firstChild) {
     const firstTodoProject = todoProjects.querySelector('li > p');
+    const lastTodoProject = todoProjects.lastElementChild.firstElementChild;
     const allTodoProjects = todoProjects.querySelectorAll('li > p');
 
     allTodoProjects.forEach((project) => {
@@ -59,6 +60,7 @@ function highlightTodoProject(todoProjects) {
     });
 
     firstTodoProject.classList.add('current-selected-todo-project');
+    lastTodoProject.classList.add('current-selected-todo-project');
   }
 }
 
