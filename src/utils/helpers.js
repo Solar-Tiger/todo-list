@@ -46,6 +46,22 @@ function updateAllTodoTasksArray() {
   }
 }
 
+// Remove all highlighted TODO projects and set the first project as highlighted
+function highlightTodoProject(todoProjects) {
+  if (todoProjects.firstChild) {
+    const firstTodoProject = todoProjects.querySelector('li > p');
+    const allTodoProjects = todoProjects.querySelectorAll('li > p');
+
+    allTodoProjects.forEach((project) => {
+      if (project.classList.contains('current-selected-todo-project')) {
+        project.classList.remove('current-selected-todo-project');
+      }
+    });
+
+    firstTodoProject.classList.add('current-selected-todo-project');
+  }
+}
+
 export {
   findArrayElement,
   findArrayIndex,
@@ -54,4 +70,5 @@ export {
   sortTodoTasksByDate,
   getArrayContainingArrayItem,
   updateAllTodoTasksArray,
+  highlightTodoProject,
 };
