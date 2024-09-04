@@ -11,8 +11,11 @@ import { deleteAndUpdateCurrentTodoTasks } from './todoTaskRemove';
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
+import { highlightTodoProject } from '../../utils/helpers';
 
 function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
+  const todoProjectsList = document.getElementById('todo-projects-list');
+
   const currentTodoProjectListDeleteIcon =
     currentTodoProjectList.querySelectorAll('li > img');
 
@@ -59,6 +62,9 @@ function deleteAndUpdateCurrentTodoProjects(currentTodoProjectList) {
 
       // Update TODO projects in the select elements option list
       updateTodoProjectsForAddingTask();
+
+      // Update default TODO project to be highlighted
+      highlightTodoProject(todoProjectsList);
 
       // Save update TODO projects array to local storage
       saveArrayToLocalStorage(
