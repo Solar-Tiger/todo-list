@@ -30,6 +30,28 @@ function loadSidebar() {
 
   taskDisplayerOptions.classList.add('todo-task-displayer-options');
 
+  taskDisplayerOptions.addEventListener('click', (e) => {
+    if (e.target.tagName.toLowerCase() === 'p') {
+      const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
+      const allTaskTisplayerOptions =
+        taskDisplayerOptions.querySelectorAll('li > p');
+
+      allTaskTisplayerOptions.forEach((taskOption) => {
+        if (taskOption.classList.contains('current-selected-todo-project')) {
+          taskOption.classList.remove('current-selected-todo-project');
+        }
+      });
+
+      allTodoProjects.forEach((project) => {
+        if (project.classList.contains('current-selected-todo-project')) {
+          project.classList.remove('current-selected-todo-project');
+        }
+      });
+
+      e.target.classList.add('current-selected-todo-project');
+    }
+  });
+
   const taskDisplayerChoices = [
     'All tasks',
     'Next 24 hours',
@@ -78,10 +100,16 @@ function loadSidebar() {
 
   // Use "Event Delgation" to change the background color of each TODO project to show which is selected
   todoProjectsList.addEventListener('click', (e) => {
-    // console.dir(e.target);
-
     if (e.target.tagName.toLowerCase() === 'p') {
       const allTodoProjects = todoProjectsList.querySelectorAll('li > p');
+      const allTaskTisplayerOptions =
+        taskDisplayerOptions.querySelectorAll('li > p');
+
+      allTaskTisplayerOptions.forEach((taskOption) => {
+        if (taskOption.classList.contains('current-selected-todo-project')) {
+          taskOption.classList.remove('current-selected-todo-project');
+        }
+      });
 
       allTodoProjects.forEach((project) => {
         if (project.classList.contains('current-selected-todo-project')) {
@@ -103,7 +131,7 @@ function loadSidebar() {
   // Load proper displayed project when page is refreshed if projects are available
   if (getOrSetTodoProjects().getCurrentTodoProjects().length >= 1) {
     projectUpdater.updateCurrentDisplayedProject(0);
-    highlightTodoProject(todoProjectsList);
+    highlightTodoProject();
   }
 }
 
