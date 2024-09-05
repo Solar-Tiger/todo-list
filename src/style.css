@@ -123,6 +123,7 @@ body {
   & .todo-task-displayer-options {
     border: 2px solid black;
     border-bottom: none;
+    padding: 8px 0;
 
     & li {
       display: flex;
@@ -157,6 +158,7 @@ body {
     overflow-y: auto;
     border: black solid;
     border-width: 0 2px 2px 2px;
+    padding: 8px 0;
 
     & li {
       display: flex;
@@ -180,7 +182,8 @@ body {
 }
 
 .current-selected-todo-project {
-  background-color: rgb(140, 140, 140, 0.5);
+  background-color: rgba(246, 145, 255, 0.5);
+  box-shadow: 0px 0px 15px 10px rgb(246, 145, 255, 0.5);
 }
 
 .todo-task-container {
