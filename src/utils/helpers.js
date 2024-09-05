@@ -47,11 +47,14 @@ function updateAllTodoTasksArray() {
 }
 
 // Remove all highlighted TODO projects and set the first project as highlighted
-function highlightTodoProject(todoProjects) {
-  if (todoProjects.firstChild) {
-    const firstTodoProject = todoProjects.querySelector('li > p');
-    const lastTodoProject = todoProjects.lastElementChild.firstElementChild;
-    const allTodoProjects = todoProjects.querySelectorAll('li > p');
+function highlightTodoProject(isProjectAdded = false) {
+  const todoProjectList = document.getElementById('todo-projects-list');
+  const currentNumberOfTodoProjects = todoProjectList.childNodes.length;
+
+  if (todoProjectList.firstChild) {
+    const firstTodoProject = todoProjectList.querySelector('li > p');
+    const lastTodoProject = todoProjectList.querySelector('li:last-child > p');
+    const allTodoProjects = todoProjectList.querySelectorAll('li > p');
 
     allTodoProjects.forEach((project) => {
       if (project.classList.contains('current-selected-todo-project')) {
@@ -59,8 +62,11 @@ function highlightTodoProject(todoProjects) {
       }
     });
 
-    firstTodoProject.classList.add('current-selected-todo-project');
-    lastTodoProject.classList.add('current-selected-todo-project');
+    if (isProjectAdded && currentNumberOfTodoProjects > 1) {
+      lastTodoProject.classList.add('current-selected-todo-project');
+    } else {
+      firstTodoProject.classList.add('current-selected-todo-project');
+    }
   }
 }
 
