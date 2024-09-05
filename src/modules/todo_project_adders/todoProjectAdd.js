@@ -11,7 +11,7 @@ import { displayTodoTasksForCurrentTodoProject } from '../todo_project_list_upda
 import { saveArrayToLocalStorage } from '../../utils/helpers';
 import { updateCurrentProjectTitle } from '../todo_project_title_updater/todoProjectTitleUpdater';
 import { updateTodoProjectsForAddingTask } from '../todo_project_updaters/todoProjectUpdateProjectOptions';
-import { findArrayIndex } from '../../utils/helpers';
+import { findArrayIndex, highlightTodoProject } from '../../utils/helpers';
 
 function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
   const todoProjects = getOrSetTodoProjects().getCurrentTodoProjects();
@@ -45,6 +45,9 @@ function addTodoProjectToSidebar(todoProjectDialog, todoProjectName) {
 
   // Update TODO projects in the select elements option list
   updateTodoProjectsForAddingTask();
+
+  // Highlight last TODO project when one is added
+  highlightTodoProject(true);
 
   // Save TODO projects array to local storage along with TODO task objects inside the TODO projects array
   saveArrayToLocalStorage('todoProjects', todoProjects);
