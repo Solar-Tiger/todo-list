@@ -25,7 +25,3 @@ loadTodoTaskModal();
 loadSidebar();
 loadNavHamburgerMenu();
 loadTodoTaskDisplay();
-
-import { projectUpdater } from './modules/todo_project_controllers/todoProjectController.js';
-
-window.projectUpdater = projectUpdater;
